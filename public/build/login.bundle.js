@@ -24821,6 +24821,36 @@ var Signup = function (_React$Component3) {
                 createToast("Please enter a valid birth date!");
             } else if (StateObject.s_phone.length != 10) {
                 createToast("Phone Number should be 10 digits long");
+            } else {
+                alert('running');
+                _superagent2.default.get('/confirm_login/quesa/').query({ username: StateObject.username }).set("Accept", 'application/json').end(function (error, response) {
+                    if (error) {
+                        createToast('Server Error occured, please try again later.<br> Sorry for the inconvinience.');
+                    } else {
+                        if (response.result != null) {
+                            createToast("Username already Taken. Please try another username");
+                        } else {
+                            alert('second');
+                            _superagent2.default.post('/confirm_login/quesa').body({
+                                phone: StateObject.s_phone,
+                                dob: StateObject.s_dob,
+                                course: StateObject.s_course,
+                                username: StateObject.s_user,
+                                password: StateObject.s_pass,
+                                lname: StateObject.s_lname,
+                                fname: StateObject.s_fname,
+                                email: StateObject.s_email
+                            }).set("Accept", "application/json").end(function (error, response) {
+                                if (error) {
+                                    createToast("Server error, please try again later.<br> Sorry for the inconvinience.");
+                                } else {
+                                    createToast("Congratulations! Your account has been created.<br>You can login now.");
+                                    document.getElementById('s_submit').innerHTML = "GO AND LOGIN";
+                                }
+                            });
+                        }
+                    }
+                });
             }
         }
     }, {

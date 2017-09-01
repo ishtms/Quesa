@@ -12,7 +12,7 @@ var confirm_login = require('./routes/confirm_login');
 
 var app = express();
 
-mongoose.connect('mongodb://ishtmeet:390775866@ds121494.mlab.com:21494/quesa', function(err){
+mongoose.connect('mongodb://ishfired:390775866@ds121494.mlab.com:21494/quesa', function(err){
   if(err){
     console.log("There was an error connecting to database", err);
   }
