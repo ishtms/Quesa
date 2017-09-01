@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
                     err: err
                 })
             }else{
-                console.log(response)
                 res.json({
                     confirmation: 'success',
                     result: response
@@ -23,6 +22,7 @@ router.get('/', function(req, res, next) {
 });
 /* Entering new User */
 router.post('/', function(req, res, next) {
+    console.log(req.body)
     UserSchema.create(req.body, (err, response)=>{
         if(err){
             res.json({

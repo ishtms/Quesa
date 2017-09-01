@@ -71,19 +71,20 @@ class Signup extends React.Component{
             alert('running')
             superagent
                 .get('/confirm_login/quesa/')
-                .query({username: StateObject.username})
+                .query({username: StateObject.s_user})
                 .set("Accept", 'application/json')
                 .end((error, response) => {
                     if(error){
                         createToast('Server Error occured, please try again later.<br> Sorry for the inconvinience.');
                     }else{
-                        if(response.result != null){
+                        console.log('resonse is ',response.body.result);
+                        if(response.body.result != null){
                             createToast("Username already Taken. Please try another username");
                         }else{
                             alert('second')
                             superagent
                                 .post('/confirm_login/quesa')
-                                .body({
+                                .send({
                                     phone: StateObject.s_phone,
                                     dob: StateObject.s_dob,
                                     course: StateObject.s_course,
