@@ -1,0 +1,53 @@
+#main{
+    width: 50% !important;
+    padding: 5px 5%;
+    background-color: rgba(0, 0, 0, 0.18);
+    position: absolute;
+    left: 50%;
+    top: 2%;
+    transform: translateX(-50%)
+}
+#s_submit{
+    left: 50%;
+    transform: translateX(-50%)
+}
+.toast{
+    background-color: blueviolet !important;
+}
+label{
+    color: white !important;
+}
+input:focus{
+    border-bottom: 4px white !important;
+    box-shadow: 0 4px 0 0 white !important;
+    }
+.tab-demo{
+    width: 50% !important;
+    overflow: hidden !important;
+    display: block;
+    margin-bottom: 3% !important;
+}
+.indicator{
+    background-color: blueviolet !important;
+    height: 3px !important
+}
+.tab a{
+    color: blueviolet !important;
+}
+.tab-demo li{
+    width: 50% !important;
+}
+.select-wrapper input{
+    color: white !important;
+}
+.dropdown-content li{
+    text-align: center !important;
+}
+@media(max-width: 600px){
+    .tab a{
+        font-size: 10px !important;
+    }
+    #main{
+        width: 90% !important;
+    }
+}
