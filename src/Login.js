@@ -8,9 +8,6 @@ var ReactRouter = require('react-router-dom');
 var Router = ReactRouter.BrowserRouter;
 var Route = ReactRouter.Route;
 
-function checkUserNameAvaibility(){
-    alert("HI")
-}
 
 class Login extends React.Component{
     render(){
@@ -68,7 +65,7 @@ class Signup extends React.Component{
         }else if(StateObject.s_phone.length != 10){
             createToast("Phone Number should be 10 digits long");
         }else{
-            alert('running')
+            showLoadingIcon();            
             superagent
                 .get('/confirm_login/quesa/')
                 .query({username: StateObject.s_user})
@@ -76,31 +73,44 @@ class Signup extends React.Component{
                 .end((error, response) => {
                     if(error){
                         createToast('Server Error occured, please try again later.<br> Sorry for the inconvinience.');
+                        hideLoadingIcon()
                     }else{
                         console.log('resonse is ',response.body.result);
                         if(response.body.result != null){
                             createToast("Username already Taken. Please try another username");
+                            hideLoadingIcon();
                         }else{
-                            alert('second')
+                            showLoadingIcon();
                             superagent
                                 .post('/confirm_login/quesa')
                                 .send({
-                                    phone: StateObject.s_phone,
+                                    phone: StateObject.s_phone.trim(),
                                     dob: StateObject.s_dob,
                                     course: StateObject.s_course,
-                                    username: StateObject.s_user,
-                                    password: StateObject.s_pass,
-                                    lname: StateObject.s_lname,
-                                    fname: StateObject.s_fname,
-                                    email: StateObject.s_email
+                                    username: StateObject.s_user.trim(),
+                                    password: StateObject.s_pass.trim(),
+                                    lname: StateObject.s_lname.trim().charAt(0).toUpperCase() + StateObject.s_lname.trim().split('').splice(1).join(''),
+                                    fname: StateObject.s_fname.trim().charAt(0).toUpperCase() + StateObject.s_fname.trim().split('').splice(1).join(''),
+                                    email: StateObject.s_email.trim()
                                 })
                                 .set("Accept", "application/json")
                                 .end((error, response)=>{
                                     if(error){
                                         createToast("Server error, please try again later.<br> Sorry for the inconvinience.")
+                                        hideLoadingIcon()
                                     }else{
                                         createToast("Congratulations! Your account has been created.<br>You can login now.")
-                                        document.getElementById('s_submit').innerHTML = "GO AND LOGIN"
+                                        hideLoadingIcon();
+                                        this.setState({
+                                            s_fname: '',
+                                            s_lname: '',
+                                            s_email: '',
+                                            s_user: '',
+                                            s_pass: '',
+                                            s_course: 'Full Stack',
+                                            s_dob: '',
+                                            s_phone: ''
+                                        })
                                     }
                                 })
                         }
@@ -110,23 +120,24 @@ class Signup extends React.Component{
     }
     render(){
                 return(<Row>
-                        <Input icon="face" id="s_fname" s={12} label="First Name" onChange={this.handleChange.bind(this)} />
-                        <Input icon="border_color" id="s_lname" s={12} label="Last Name" onChange={this.handleChange.bind(this)} />
-                        <Input icon="contact_mail" id="s_email" type="email" label="E-Mail" s={12} onChange={this.handleChange.bind(this)} />            
-                        <Input icon='account_circle' id="s_user" s={12} label="Username" onChange={this.handleChange.bind(this)} />            
-                        <Input icon="vpn_key" id="s_pass" type="password" label="Password" s={12} onChange={this.handleChange.bind(this)} />
-                        <Input icon="favorite" id="s_phone" type="number"  label="Phone Number" s={12} onChange={this.handleChange.bind(this)} />                                                
-                        <Input  s={12} type='select' label="Choose Course" defaultValue='2' onChange={this.handleChange.bind(this)} id="s_course" style={{color: 'white'}}>
-                            <option className="circle" style={{color: 'white'}} value='fullstack'>Full Stack Web Development</option>
-                            <option style={{textAlign:'center !important'}} value='android'>Android Development</option>
-                            <option style={{color: 'white'}} value='design'>Web Design</option>
-                            <option style={{color: 'white'}} value='foundation'>Software Foundation</option>
-                            <option style={{color: 'white'}} value='advance'>Advance Java</option>
+                        <Input value={this.state.s_fname} icon="face" id="s_fname" s={12} label="First Name" onChange={this.handleChange.bind(this)} />
+                        <Input value={this.state.s_lname} icon="border_color" id="s_lname" s={12} label="Last Name" onChange={this.handleChange.bind(this)} />
+                        <Input value={this.state.s_email} icon="contact_mail" id="s_email" type="email" label="E-Mail" s={12} onChange={this.handleChange.bind(this)} />            
+                        <Input value={this.state.s_user} icon='account_circle' id="s_user" s={12} label="Username" onChange={this.handleChange.bind(this)} />            
+                        <Input value={this.state.s_pass} icon="vpn_key" id="s_pass" type="password" label="Password" s={12} onChange={this.handleChange.bind(this)} />
+                        <Input value={this.state.s_phone} icon="favorite" id="s_phone" type="number"  label="Phone Number" s={12} onChange={this.handleChange.bind(this)} />                                                
+                        <Input value={this.state.s_course} s={12} type='select' label="Choose Course" onChange={this.handleChange.bind(this)} id="s_course" style={{color: 'white'}}>
+                            <option className="circle" style={{color: 'white'}} value='Full Stack'>Full Stack Web Development</option>
+                            <option style={{textAlign:'center !important'}} value='Android'>Android Development</option>
+                            <option style={{color: 'white'}} value='Web Design'>Web Design</option>
+                            <option style={{color: 'white'}} value='Software Foundation'>Software Foundation</option>
+                            <option style={{color: 'white'}} value='Advance Java'>Advance Java</option>
                         </Input>                      
                         <Input s={6} name='group1' type='radio' value='male' label='Male' checked/>
                         <Input s={6} name='group1' type='radio' value='female' label='Female' />
-                        <Input s={12} id="s_dob" name='on' type='date' onChange={this.handleChange.bind(this)} label="Date of Birth" />            
+                        <Input value={this.state.s_dob} s={12} id="s_dob" name='on' type='date' onChange={this.handleChange.bind(this)} label="Date of Birth" />            
                         <Button floating large className='red' waves='light' icon='check_circle' id="s_submit" onClick={this.handleSubmit.bind(this)} />
+                        <img id="s_loading" src="./images/loading.gif" height='55px' width='55px' />
                 </Row>)
     }
 }

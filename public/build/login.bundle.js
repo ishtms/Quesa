@@ -24726,10 +24726,6 @@ var ReactRouter = __webpack_require__(202);
 var Router = ReactRouter.BrowserRouter;
 var Route = ReactRouter.Route;
 
-function checkUserNameAvaibility() {
-    alert("HI");
-}
-
 var Login = function (_React$Component) {
     _inherits(Login, _React$Component);
 
@@ -24825,6 +24821,8 @@ var Signup = function (_React$Component3) {
     }, {
         key: 'handleSubmit',
         value: function handleSubmit() {
+            var _this4 = this;
+
             var StateObject = Object.assign({}, this.state);
             if (StateObject.s_course.length <= 0 || StateObject.s_dob.length <= 0 || StateObject.s_email.length <= 0 || StateObject.s_fname.length <= 0 || StateObject.s_phone.length <= 0 || StateObject.s_lname.length <= 0 || StateObject.s_pass.length <= 0 || StateObject.s_user.length <= 0) {
                 createToast("Fill in all the fields please.");
@@ -24841,31 +24839,44 @@ var Signup = function (_React$Component3) {
             } else if (StateObject.s_phone.length != 10) {
                 createToast("Phone Number should be 10 digits long");
             } else {
-                alert('running');
+                showLoadingIcon();
                 _superagent2.default.get('/confirm_login/quesa/').query({ username: StateObject.s_user }).set("Accept", 'application/json').end(function (error, response) {
                     if (error) {
                         createToast('Server Error occured, please try again later.<br> Sorry for the inconvinience.');
+                        hideLoadingIcon();
                     } else {
                         console.log('resonse is ', response.body.result);
                         if (response.body.result != null) {
                             createToast("Username already Taken. Please try another username");
+                            hideLoadingIcon();
                         } else {
-                            alert('second');
+                            showLoadingIcon();
                             _superagent2.default.post('/confirm_login/quesa').send({
-                                phone: StateObject.s_phone,
+                                phone: StateObject.s_phone.trim(),
                                 dob: StateObject.s_dob,
                                 course: StateObject.s_course,
-                                username: StateObject.s_user,
-                                password: StateObject.s_pass,
-                                lname: StateObject.s_lname,
-                                fname: StateObject.s_fname,
-                                email: StateObject.s_email
+                                username: StateObject.s_user.trim(),
+                                password: StateObject.s_pass.trim(),
+                                lname: StateObject.s_lname.trim().charAt(0).toUpperCase() + StateObject.s_lname.trim().split('').splice(1).join(''),
+                                fname: StateObject.s_fname.trim().charAt(0).toUpperCase() + StateObject.s_fname.trim().split('').splice(1).join(''),
+                                email: StateObject.s_email.trim()
                             }).set("Accept", "application/json").end(function (error, response) {
                                 if (error) {
                                     createToast("Server error, please try again later.<br> Sorry for the inconvinience.");
+                                    hideLoadingIcon();
                                 } else {
                                     createToast("Congratulations! Your account has been created.<br>You can login now.");
-                                    document.getElementById('s_submit').innerHTML = "GO AND LOGIN";
+                                    hideLoadingIcon();
+                                    _this4.setState({
+                                        s_fname: '',
+                                        s_lname: '',
+                                        s_email: '',
+                                        s_user: '',
+                                        s_pass: '',
+                                        s_course: 'Full Stack',
+                                        s_dob: '',
+                                        s_phone: ''
+                                    });
                                 }
                             });
                         }
@@ -24879,45 +24890,46 @@ var Signup = function (_React$Component3) {
             return _react2.default.createElement(
                 _reactMaterialize.Row,
                 null,
-                _react2.default.createElement(_reactMaterialize.Input, { icon: 'face', id: 's_fname', s: 12, label: 'First Name', onChange: this.handleChange.bind(this) }),
-                _react2.default.createElement(_reactMaterialize.Input, { icon: 'border_color', id: 's_lname', s: 12, label: 'Last Name', onChange: this.handleChange.bind(this) }),
-                _react2.default.createElement(_reactMaterialize.Input, { icon: 'contact_mail', id: 's_email', type: 'email', label: 'E-Mail', s: 12, onChange: this.handleChange.bind(this) }),
-                _react2.default.createElement(_reactMaterialize.Input, { icon: 'account_circle', id: 's_user', s: 12, label: 'Username', onChange: this.handleChange.bind(this) }),
-                _react2.default.createElement(_reactMaterialize.Input, { icon: 'vpn_key', id: 's_pass', type: 'password', label: 'Password', s: 12, onChange: this.handleChange.bind(this) }),
-                _react2.default.createElement(_reactMaterialize.Input, { icon: 'favorite', id: 's_phone', type: 'number', label: 'Phone Number', s: 12, onChange: this.handleChange.bind(this) }),
+                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.s_fname, icon: 'face', id: 's_fname', s: 12, label: 'First Name', onChange: this.handleChange.bind(this) }),
+                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.s_lname, icon: 'border_color', id: 's_lname', s: 12, label: 'Last Name', onChange: this.handleChange.bind(this) }),
+                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.s_email, icon: 'contact_mail', id: 's_email', type: 'email', label: 'E-Mail', s: 12, onChange: this.handleChange.bind(this) }),
+                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.s_user, icon: 'account_circle', id: 's_user', s: 12, label: 'Username', onChange: this.handleChange.bind(this) }),
+                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.s_pass, icon: 'vpn_key', id: 's_pass', type: 'password', label: 'Password', s: 12, onChange: this.handleChange.bind(this) }),
+                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.s_phone, icon: 'favorite', id: 's_phone', type: 'number', label: 'Phone Number', s: 12, onChange: this.handleChange.bind(this) }),
                 _react2.default.createElement(
                     _reactMaterialize.Input,
-                    { s: 12, type: 'select', label: 'Choose Course', defaultValue: '2', onChange: this.handleChange.bind(this), id: 's_course', style: { color: 'white' } },
+                    { value: this.state.s_course, s: 12, type: 'select', label: 'Choose Course', onChange: this.handleChange.bind(this), id: 's_course', style: { color: 'white' } },
                     _react2.default.createElement(
                         'option',
-                        { className: 'circle', style: { color: 'white' }, value: 'fullstack' },
+                        { className: 'circle', style: { color: 'white' }, value: 'Full Stack' },
                         'Full Stack Web Development'
                     ),
                     _react2.default.createElement(
                         'option',
-                        { style: { textAlign: 'center !important' }, value: 'android' },
+                        { style: { textAlign: 'center !important' }, value: 'Android' },
                         'Android Development'
                     ),
                     _react2.default.createElement(
                         'option',
-                        { style: { color: 'white' }, value: 'design' },
+                        { style: { color: 'white' }, value: 'Web Design' },
                         'Web Design'
                     ),
                     _react2.default.createElement(
                         'option',
-                        { style: { color: 'white' }, value: 'foundation' },
+                        { style: { color: 'white' }, value: 'Software Foundation' },
                         'Software Foundation'
                     ),
                     _react2.default.createElement(
                         'option',
-                        { style: { color: 'white' }, value: 'advance' },
+                        { style: { color: 'white' }, value: 'Advance Java' },
                         'Advance Java'
                     )
                 ),
                 _react2.default.createElement(_reactMaterialize.Input, { s: 6, name: 'group1', type: 'radio', value: 'male', label: 'Male', checked: true }),
                 _react2.default.createElement(_reactMaterialize.Input, { s: 6, name: 'group1', type: 'radio', value: 'female', label: 'Female' }),
-                _react2.default.createElement(_reactMaterialize.Input, { s: 12, id: 's_dob', name: 'on', type: 'date', onChange: this.handleChange.bind(this), label: 'Date of Birth' }),
-                _react2.default.createElement(_reactMaterialize.Button, { floating: true, large: true, className: 'red', waves: 'light', icon: 'check_circle', id: 's_submit', onClick: this.handleSubmit.bind(this) })
+                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.s_dob, s: 12, id: 's_dob', name: 'on', type: 'date', onChange: this.handleChange.bind(this), label: 'Date of Birth' }),
+                _react2.default.createElement(_reactMaterialize.Button, { floating: true, large: true, className: 'red', waves: 'light', icon: 'check_circle', id: 's_submit', onClick: this.handleSubmit.bind(this) }),
+                _react2.default.createElement('img', { id: 's_loading', src: './images/loading.gif', height: '55px', width: '55px' })
             );
         }
     }]);

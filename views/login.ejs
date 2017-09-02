@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <style>
     canvas{
               border: 1px solid black;
@@ -32,6 +33,17 @@
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script src="./build/login.bundle.js"></script>
     <script type="text/javascript"> 
+        function showLoadingIcon(){
+            console.log('showing icon')
+            document.getElementById('s_submit').innerHTML= '';
+            $('#s_loading').addClass('show')
+            $('#s_loading').removeClass('hide')
+        }
+        function hideLoadingIcon(){
+            $("#s_loading").removeClass('show')
+            $('#s_loading').addClass('hide');
+            document.getElementById('s_submit').innerHTML="<i class='material-icons'>check_circle</i>"
+        }
        function createToast(text){
            Materialize.toast(text,3000);
        }
@@ -133,7 +145,7 @@
 
           let BallArray = [];
 
-          for(let index = 0; index <125; index++){
+          for(let index = 0; index <105; index++){
               BallArray.push(new Ball(_randomColorGenerator(),
                                       _randomRadiusGenerator(),
                                       _randomCordinateGenerator(0),

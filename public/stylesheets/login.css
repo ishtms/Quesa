@@ -11,6 +11,22 @@
     left: 50%;
     transform: translateX(-50%)
 }
+.show{
+    z-index: 10;
+    height: 60px;
+    width: 60px;
+}
+.input-field input{
+    color: white !important;
+}
+.hide{
+    z-index: -1;
+}
+#s_loading{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 .toast{
     background-color: blueviolet !important;
 }
