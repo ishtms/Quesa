@@ -24736,6 +24736,9 @@ var Login = function (_React$Component) {
     }
 
     _createClass(Login, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {}
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -24808,12 +24811,11 @@ var Signin = function (_React$Component2) {
                             if (response.body.result.username == StateObject.l_user && response.body.result.password == StateObject.l_pass) {
                                 createToast("Logged in succesfully");
                                 hideLoadingIcon();
-                                return _superagent2.default.post('/success').send().set("Accept", 'application/json').end(function (err, response) {
+                                _superagent2.default.post('/success').send().set("Accept", "application/json").end(function (err, repsonse) {
                                     if (err) {
-                                        createToast('A server error occured. Please try again within few seconds');
+                                        createToast('Server Error occured. Please try again after a few seconds.');
                                     } else {
-                                        console.log('working');
-                                        window.location.href = "http://localhost:3000/main";
+                                        //  window.location.href = 'http://localhost:3000/main'
                                     }
                                 });
                             } else {

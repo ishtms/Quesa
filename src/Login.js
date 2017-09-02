@@ -10,6 +10,8 @@ var Route = ReactRouter.Route;
 
 
 class Login extends React.Component{
+    componentWillMount(){
+    }
     render(){
         return(
             <div id="main">
@@ -57,16 +59,15 @@ class Signin extends React.Component{
                             if(response.body.result.username == StateObject.l_user && response.body.result.password == StateObject.l_pass){
                                 createToast("Logged in succesfully");
                                 hideLoadingIcon();
-                               return superagent
+                                superagent
                                     .post('/success')
                                     .send()
-                                    .set("Accept", 'application/json')
-                                    .end((err, response)=>{
+                                    .set("Accept", "application/json")
+                                    .end((err,repsonse)=>{
                                         if(err){
-                                            createToast('A server error occured. Please try again within few seconds');
+                                            createToast('Server Error occured. Please try again after a few seconds.');
                                         }else{
-                                            console.log('working')
-                                            window.location.href = "http://localhost:3000/main"
+                                          //  window.location.href = 'http://localhost:3000/main'
                                         }
                                     })
                             }else{

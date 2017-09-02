@@ -3,8 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log('ok')
-   res.render('main',{})
+  if(req.cookies.cookieName){
+    return res.render('main',{})
+  }else{
+    res.redirect('/');
+  }
+  
 });
 
 module.exports = router;

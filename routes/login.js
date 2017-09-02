@@ -3,12 +3,18 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'this is login' });
-  console.log('this is called')
+  if(req.cookies.cookieName){
+    return res.render('main')
+  }else{
+    return res.render('login', { title: 'this is login' });
+  }
 });
 router.post('/success', function(req,res,next){
-  res.location('/main');
-  res.redirect('/main')
+
+  res.cookie('cookieName','cookie', { maxAge: 900000, httpOnly: true });
+   res.redirect('/main')
+  
+  
 })
 
 module.exports = router;
