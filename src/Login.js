@@ -24,8 +24,35 @@ class Login extends React.Component{
 }
 
 class Signin extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            l_user: '',
+            l_pass: ''
+        }
+    }
+    handleChange(event){
+        let StateObj = Object.assign({}, this.state);
+        StateObj[event.target.id] = event.target.value;
+        this.setState(StateObj);    
+    }
+    handleSubmit(){
+        var StateObject = Object.assign({}, this.state);
+        if(StateObject.l_user.length <= 7){
+            createToast("Username should be 8 characters long, please check the username and type again.")
+        }else if(StateObject.l_pass.length <= 7){
+            createToast("Password should be 8 characters long, please check the password and type again.")
+        }else{
+
+        }
+    }
     render(){
-        return(<div>login</div>)
+        return(<Row>
+                <Input value={this.state.l_user} icon='account_circle' id="l_user" s={12} label="Username" onChange={this.handleChange.bind(this)} />            
+                <Input value={this.state.l_pass} icon="vpn_key" id="l_pass" type="password" label="Password" s={12} onChange={this.handleChange.bind(this)} />
+                <Button floating large className='red' waves='light' icon='check_circle' id="l_submit" onClick={this.handleSubmit.bind(this)} />
+                <img id="l_loading" src="./images/loading.gif" height='55px' width='55px' />
+            </Row>)
     }
 }
 class Signup extends React.Component{
@@ -58,6 +85,8 @@ class Signup extends React.Component{
             createToast("Your Last Name should be atleast 3 characters long.")
         }else if((!StateObject.s_email.endsWith('.com') && !StateObject.s_email.endsWith('.in')) || StateObject.s_email.indexOf('@') <= 3){
             createToast("Please enter a valid E-Mail address");
+        }else if(StateObject.s_pass.length <=7){
+            createToast("Password should be atleast 8 characters long.")
         }else if(StateObject.s_user.length <=7){
             createToast("Username should be atleast 8 characters long.")
         }else if(StateObject.s_dob.length <=0){

@@ -22,7 +22,12 @@
 .hide{
     z-index: -1;
 }
-#s_loading{
+#l_loading{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+#s_loading, #l_loading{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

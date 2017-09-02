@@ -24770,19 +24770,45 @@ var Login = function (_React$Component) {
 var Signin = function (_React$Component2) {
     _inherits(Signin, _React$Component2);
 
-    function Signin() {
+    function Signin(props) {
         _classCallCheck(this, Signin);
 
-        return _possibleConstructorReturn(this, (Signin.__proto__ || Object.getPrototypeOf(Signin)).apply(this, arguments));
+        var _this2 = _possibleConstructorReturn(this, (Signin.__proto__ || Object.getPrototypeOf(Signin)).call(this, props));
+
+        _this2.state = {
+            l_user: '',
+            l_pass: ''
+        };
+        return _this2;
     }
 
     _createClass(Signin, [{
+        key: 'handleChange',
+        value: function handleChange(event) {
+            var StateObj = Object.assign({}, this.state);
+            StateObj[event.target.id] = event.target.value;
+            this.setState(StateObj);
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit() {
+            var StateObject = Object.assign({}, this.state);
+            if (StateObject.l_user.length <= 7) {
+                createToast("Username should be 8 characters long, please check the username and type again.");
+            } else if (StateObject.l_pass.length <= 7) {
+                createToast("Password should be 8 characters long, please check the password and type again.");
+            } else {}
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'div',
+                _reactMaterialize.Row,
                 null,
-                'login'
+                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.l_user, icon: 'account_circle', id: 'l_user', s: 12, label: 'Username', onChange: this.handleChange.bind(this) }),
+                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.l_pass, icon: 'vpn_key', id: 'l_pass', type: 'password', label: 'Password', s: 12, onChange: this.handleChange.bind(this) }),
+                _react2.default.createElement(_reactMaterialize.Button, { floating: true, large: true, className: 'red', waves: 'light', icon: 'check_circle', id: 'l_submit', onClick: this.handleSubmit.bind(this) }),
+                _react2.default.createElement('img', { id: 'l_loading', src: './images/loading.gif', height: '55px', width: '55px' })
             );
         }
     }]);
@@ -24832,6 +24858,8 @@ var Signup = function (_React$Component3) {
                 createToast("Your Last Name should be atleast 3 characters long.");
             } else if (!StateObject.s_email.endsWith('.com') && !StateObject.s_email.endsWith('.in') || StateObject.s_email.indexOf('@') <= 3) {
                 createToast("Please enter a valid E-Mail address");
+            } else if (StateObject.s_pass.length <= 7) {
+                createToast("Password should be atleast 8 characters long.");
             } else if (StateObject.s_user.length <= 7) {
                 createToast("Username should be atleast 8 characters long.");
             } else if (StateObject.s_dob.length <= 0) {
