@@ -32,6 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', login);
+app.use('/main', main);
 app.use('/confirm_login/quesa/', confirm_login)
 
 // catch 404 and forward to error handler

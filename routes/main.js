@@ -3,9 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect('back');
-  console.log('this is called')
-  
+  res.render('main')
 });
 
 module.exports = router;
+  

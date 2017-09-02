@@ -58,8 +58,8 @@ class Signin extends React.Component{
                                 createToast("Logged in succesfully");
                                 hideLoadingIcon();
                                 superagent
-                                    .get('/')
-                                    .query({url: 'main'})
+                                    .get('/success')
+                                    .query()
                                     .set("Accept", 'application/json')
                                     .end((err, response)=>{
                                         if(err){
