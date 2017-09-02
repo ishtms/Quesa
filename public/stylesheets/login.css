@@ -7,7 +7,7 @@
     top: 2%;
     transform: translateX(-50%)
 }
-#s_submit{
+#s_submit, #l_submit{
     left: 50%;
     transform: translateX(-50%)
 }
@@ -27,7 +27,7 @@
     left: 50%;
     transform: translate(-50%);
 }
-#s_loading, #l_loading{
+#s_loading{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

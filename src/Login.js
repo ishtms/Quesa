@@ -43,7 +43,42 @@ class Signin extends React.Component{
         }else if(StateObject.l_pass.length <= 7){
             createToast("Password should be 8 characters long, please check the password and type again.")
         }else{
-
+            showLoadingIcon();            
+            superagent
+                .get('/confirm_login/quesa/')
+                .query({username: StateObject.l_user})
+                .set("Accept", 'application/json')
+                .end((error, response) => {
+                    if(error){
+                        createToast('Server Error occured, please try again later.<br> Sorry for the inconvinience.');
+                        hideLoadingIcon();
+                    }else{
+                        if(response.body.result != null){
+                            if(response.body.result.username == StateObject.l_user && response.body.result.password == StateObject.l_pass){
+                                createToast("Logged in succesfully");
+                                hideLoadingIcon();
+                                superagent
+                                    .get('/')
+                                    .query({url: 'main'})
+                                    .set("Accept", 'application/json')
+                                    .end((err, response)=>{
+                                        if(err){
+                                            createToast('A server error occured. Please try again within few seconds');
+                                        }else{
+                                            console.log("DONE")
+                                        }
+                                    })
+                            }else{
+                                createToast("Sorry, check your password and try again");
+                                hideLoadingIcon()
+                            }
+                            hideLoadingIcon();
+                        }else{
+                            createToast("Username not found, please sign up if you don't have an account.<br>Or check your username and try again.");
+                            hideLoadingIcon();
+                        }
+                    }
+                });
         }
     }
     render(){

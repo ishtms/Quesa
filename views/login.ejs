@@ -38,11 +38,17 @@
             document.getElementById('s_submit').innerHTML= '';
             $('#s_loading').addClass('show')
             $('#s_loading').removeClass('hide')
+            document.getElementById('l_submit').innerHTML= '';
+            $('#l_loading').addClass('show')
+            $('#l_loading').removeClass('hide')
         }
         function hideLoadingIcon(){
             $("#s_loading").removeClass('show')
             $('#s_loading').addClass('hide');
+            $("#l_loading").removeClass('show')
+            $('#l_loading').addClass('hide');
             document.getElementById('s_submit').innerHTML="<i class='material-icons'>check_circle</i>"
+            document.getElementById('l_submit').innerHTML="<i class='material-icons'>check_circle</i>"
         }
        function createToast(text){
            Materialize.toast(text,3000);

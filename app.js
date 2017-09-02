@@ -22,6 +22,7 @@ mongoose.connect('mongodb://ishfired:390775866@ds121494.mlab.com:21494/quesa', f
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -31,7 +32,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', login);
-app.use('/main', main);
 app.use('/confirm_login/quesa/', confirm_login)
 
 // catch 404 and forward to error handler
