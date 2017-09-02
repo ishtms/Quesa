@@ -43,7 +43,7 @@ class Signin extends React.Component{
         }else if(StateObject.l_pass.length <= 7){
             createToast("Password should be 8 characters long, please check the password and type again.")
         }else{
-            showLoadingIcon();            
+            showLoadingIcon();   
             superagent
                 .get('/confirm_login/quesa/')
                 .query({username: StateObject.l_user})
@@ -57,15 +57,16 @@ class Signin extends React.Component{
                             if(response.body.result.username == StateObject.l_user && response.body.result.password == StateObject.l_pass){
                                 createToast("Logged in succesfully");
                                 hideLoadingIcon();
-                                superagent
-                                    .get('/success')
-                                    .query()
+                               return superagent
+                                    .post('/success')
+                                    .send()
                                     .set("Accept", 'application/json')
                                     .end((err, response)=>{
                                         if(err){
                                             createToast('A server error occured. Please try again within few seconds');
                                         }else{
-                                            console.log("DONE")
+                                            console.log('working')
+                                            window.location.href = "http://localhost:3000/main"
                                         }
                                     })
                             }else{

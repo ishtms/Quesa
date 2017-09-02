@@ -24808,11 +24808,12 @@ var Signin = function (_React$Component2) {
                             if (response.body.result.username == StateObject.l_user && response.body.result.password == StateObject.l_pass) {
                                 createToast("Logged in succesfully");
                                 hideLoadingIcon();
-                                _superagent2.default.get('/success').query().set("Accept", 'application/json').end(function (err, response) {
+                                return _superagent2.default.post('/success').send().set("Accept", 'application/json').end(function (err, response) {
                                     if (err) {
                                         createToast('A server error occured. Please try again within few seconds');
                                     } else {
-                                        console.log("DONE");
+                                        console.log('working');
+                                        window.location.href = "http://localhost:3000/main";
                                     }
                                 });
                             } else {

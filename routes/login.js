@@ -6,8 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('login', { title: 'this is login' });
   console.log('this is called')
 });
-router.get('/success', function(req,res,next){
-  return res.redirect('/main');s
+router.post('/success', function(req,res,next){
+  res.location('/main');
+  res.redirect('/main')
 })
 
 module.exports = router;
