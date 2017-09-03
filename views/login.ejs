@@ -27,14 +27,16 @@
   </head>
   <body>
     <a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="top" data-delay="50" data-tooltip="Know about Quesa"  style="position: fixed; bottom: 20px; right: 20px;" onclick="openMaterialize();"><i class="material-icons">remove_red_eye</i></a>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" style="visibility: hidden"></canvas>
     <div id="app"></div>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script src="./build/login.bundle.js"></script>
     <script type="text/javascript"> 
     
-       
+       function showCanvas(){
+           $('#canvas').css('visibility','visible')
+       }
         function showLoadingIcon(){
             console.log('showing icon')
             document.getElementById('s_submit').innerHTML= '';
