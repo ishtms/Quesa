@@ -26811,13 +26811,21 @@ var Signup = function (_React$Component3) {
             s_user: '',
             s_pass: '',
             s_course: 'android',
-            s_dob: '',
             s_phone: ''
         };
         return _this3;
     }
 
     _createClass(Signup, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log("mounted");
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15 // Creates a dropdown of 15 years to control year
+            });
+        }
+    }, {
         key: 'handleChange',
         value: function handleChange(event) {
             var StateObj = Object.assign({}, this.state);
@@ -26830,7 +26838,7 @@ var Signup = function (_React$Component3) {
             var _this4 = this;
 
             var StateObject = Object.assign({}, this.state);
-            if (StateObject.s_course.length <= 0 || StateObject.s_dob.length <= 0 || StateObject.s_email.length <= 0 || StateObject.s_fname.length <= 0 || StateObject.s_phone.length <= 0 || StateObject.s_lname.length <= 0 || StateObject.s_pass.length <= 0 || StateObject.s_user.length <= 0) {
+            if (StateObject.s_course.length <= 0 || StateObject.s_email.length <= 0 || StateObject.s_fname.length <= 0 || StateObject.s_phone.length <= 0 || StateObject.s_lname.length <= 0 || StateObject.s_pass.length <= 0 || StateObject.s_user.length <= 0) {
                 createToast("Fill in all the fields please.");
             } else if (StateObject.s_fname.length <= 2) {
                 createToast("Your First Name should be atleast 3 characters long.");
@@ -26842,8 +26850,6 @@ var Signup = function (_React$Component3) {
                 createToast("Password should be atleast 8 characters long.");
             } else if (StateObject.s_user.length <= 7) {
                 createToast("Username should be atleast 8 characters long.");
-            } else if (StateObject.s_dob.length <= 0) {
-                createToast("Please enter a valid birth date!");
             } else if (StateObject.s_phone.length != 10) {
                 createToast("Phone Number should be 10 digits long");
             } else {
@@ -26861,7 +26867,7 @@ var Signup = function (_React$Component3) {
                             showLoadingIcon();
                             _superagent2.default.post('/confirm_login/quesa').send({
                                 phone: StateObject.s_phone.trim(),
-                                dob: StateObject.s_dob,
+                                joined: new Date().toISOString(),
                                 course: StateObject.s_course,
                                 username: StateObject.s_user.trim(),
                                 password: StateObject.s_pass.trim(),
@@ -26882,7 +26888,7 @@ var Signup = function (_React$Component3) {
                                         s_user: '',
                                         s_pass: '',
                                         s_course: 'Full Stack',
-                                        s_dob: '',
+
                                         s_phone: ''
                                     });
                                 }
@@ -26935,7 +26941,6 @@ var Signup = function (_React$Component3) {
                 ),
                 _react2.default.createElement(_reactMaterialize.Input, { s: 6, name: 'group1', type: 'radio', value: 'male', label: 'Male', checked: true }),
                 _react2.default.createElement(_reactMaterialize.Input, { s: 6, name: 'group1', type: 'radio', value: 'female', label: 'Female' }),
-                _react2.default.createElement(_reactMaterialize.Input, { value: this.state.s_dob, s: 12, id: 's_dob', name: 'on', type: 'date', onChange: this.handleChange.bind(this), label: 'Date of Birth' }),
                 _react2.default.createElement(_reactMaterialize.Button, { floating: true, large: true, className: 'red', waves: 'light', icon: 'check_circle', id: 's_submit', onClick: this.handleSubmit.bind(this) }),
                 _react2.default.createElement('img', { id: 's_loading', src: './images/loading.gif', height: '55px', width: '55px' })
             );

@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   
   if(req.cookies.user){
     console.log(req.cookies.user.username)
-    return res.render('main',{})
+    return res.render('main',{username: req.cookies.user.username})
   }else{
     return res.render('login')
   }

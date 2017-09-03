@@ -102,9 +102,15 @@ class Signup extends React.Component{
             s_user: '',
             s_pass: '',
             s_course: 'android',
-            s_dob: '',
             s_phone: ''
         }
+    }
+    componentDidMount(){
+        console.log("mounted")
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+          });
     }
     handleChange(event){
         let StateObj = Object.assign({}, this.state);
@@ -113,7 +119,7 @@ class Signup extends React.Component{
     }
     handleSubmit(){
         var StateObject = Object.assign({}, this.state);
-        if(StateObject.s_course.length <= 0 || StateObject.s_dob.length <=0 || StateObject.s_email.length <= 0
+        if(StateObject.s_course.length <= 0 ||  StateObject.s_email.length <= 0
         || StateObject.s_fname.length <= 0 || StateObject.s_phone.length <=0 || StateObject.s_lname.length <= 0 || StateObject.s_pass.length<=0 || StateObject.s_user.length <= 0){
             createToast("Fill in all the fields please.")
         }else if(StateObject.s_fname.length <=2){
@@ -126,8 +132,6 @@ class Signup extends React.Component{
             createToast("Password should be atleast 8 characters long.")
         }else if(StateObject.s_user.length <=7){
             createToast("Username should be atleast 8 characters long.")
-        }else if(StateObject.s_dob.length <=0){
-            createToast("Please enter a valid birth date!");
         }else if(StateObject.s_phone.length != 10){
             createToast("Phone Number should be 10 digits long");
         }else{
@@ -151,7 +155,7 @@ class Signup extends React.Component{
                                 .post('/confirm_login/quesa')
                                 .send({
                                     phone: StateObject.s_phone.trim(),
-                                    dob: StateObject.s_dob,
+                                    joined: new Date().toISOString(),
                                     course: StateObject.s_course,
                                     username: StateObject.s_user.trim(),
                                     password: StateObject.s_pass.trim(),
@@ -174,7 +178,6 @@ class Signup extends React.Component{
                                             s_user: '',
                                             s_pass: '',
                                             s_course: 'Full Stack',
-                                            s_dob: '',
                                             s_phone: ''
                                         })
                                     }
@@ -201,7 +204,6 @@ class Signup extends React.Component{
                         </Input>                      
                         <Input s={6} name='group1' type='radio' value='male' label='Male' checked/>
                         <Input s={6} name='group1' type='radio' value='female' label='Female' />
-                        <Input value={this.state.s_dob} s={12} id="s_dob" name='on' type='date' onChange={this.handleChange.bind(this)} label="Date of Birth" />            
                         <Button floating large className='red' waves='light' icon='check_circle' id="s_submit" onClick={this.handleSubmit.bind(this)} />
                         <img id="s_loading" src="./images/loading.gif" height='55px' width='55px' />
                 </Row>)
