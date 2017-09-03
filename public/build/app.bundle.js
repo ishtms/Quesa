@@ -24424,7 +24424,7 @@ var App = function (_React$Component) {
                 if (err) {
                     createToast('Server Error occured. Please try again after a few seconds.');
                 } else {
-                    window.location.href = 'http://localhost:3000/';
+                    window.location.href = './';
                 }
             });
         }
@@ -24461,11 +24461,7 @@ var App = function (_React$Component) {
                             null,
                             'Forum'
                         ),
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            'hero'
-                        ),
+                        _react2.default.createElement('li', null),
                         _react2.default.createElement('li', null)
                     )
                 )

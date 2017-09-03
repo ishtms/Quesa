@@ -11,6 +11,9 @@
     left: 50%;
     transform: translateX(-50%)
 }
+.visible{
+    visibility: visible !important;
+}
 .show{
     z-index: 10;
     height: 60px;

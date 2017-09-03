@@ -34,9 +34,10 @@
     <script src="./build/login.bundle.js"></script>
     <script type="text/javascript"> 
     
-       function showCanvas(){
-           $('#canvas').css('visibility','visible')
-       }
+       $(document).ready(function(){
+            $('#canvas').addClass('visible');
+       })
+           
         function showLoadingIcon(){
             console.log('showing icon')
             document.getElementById('s_submit').innerHTML= '';

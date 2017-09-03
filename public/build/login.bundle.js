@@ -26684,9 +26684,6 @@ var Login = function (_React$Component) {
     }
 
     _createClass(Login, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {}
-    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -26763,7 +26760,7 @@ var Signin = function (_React$Component2) {
                                     if (err) {
                                         createToast('Server Error occured. Please try again after a few seconds.');
                                     } else {
-                                        window.location.href = 'http://localhost:3000/main';
+                                        window.location.href = '/main';
                                     }
                                 });
                             } else {

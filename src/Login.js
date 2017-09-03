@@ -10,9 +10,6 @@ var Route = ReactRouter.Route;
 
 
 class Login extends React.Component{
-    componentWillMount(){
-        showCanvas();
-    }
     render(){
         return(
             <div id="main">
