@@ -28,7 +28,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser('*@&#^$JLKJKAlkjsdf@(*&@#$lkjdfj120398123##'));
+app.use(cookieParser('*@&#^$JLKJKAllkjlkkjsdf@(*&@#$lkjdfj120398123##'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', login);

@@ -61,13 +61,13 @@ class Signin extends React.Component{
                                 hideLoadingIcon();
                                 superagent
                                     .post('/success')
-                                    .send()
+                                    .send({username: StateObject.l_user})
                                     .set("Accept", "application/json")
                                     .end((err,repsonse)=>{
                                         if(err){
                                             createToast('Server Error occured. Please try again after a few seconds.');
                                         }else{
-                                          //  window.location.href = 'http://localhost:3000/main'
+                                            window.location.href = 'http://localhost:3000/main'
                                         }
                                     })
                             }else{

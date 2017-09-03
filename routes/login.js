@@ -3,16 +3,22 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.cookies.cookieName){
+  if(req.cookies.user){
     return res.render('main')
   }else{
     return res.render('login', { title: 'this is login' });
   }
 });
 router.post('/success', function(req,res,next){
+if(req.body.logout){
+  console.log('clearCookies')
+  res.clearCookie('user');
+  res.redirect('/');
+}else{
 
-  res.cookie('cookieName','cookie', { maxAge: 900000, httpOnly: true });
-   res.redirect('/main')
+  res.cookie('user',{username: req.body.username}, { maxAge: 86400000, httpOnly: true });
+  res.redirect('/main')
+}
   
   
 })

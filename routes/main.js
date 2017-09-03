@@ -3,10 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.cookies.cookieName){
+  
+  if(req.cookies.user){
+    console.log(req.cookies.user.username)
     return res.render('main',{})
   }else{
-    res.redirect('/');
+    return res.render('login')
   }
   
 });
