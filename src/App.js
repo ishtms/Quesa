@@ -25,7 +25,7 @@ class App extends React.Component{
                 if(err){
                     createToast('Server Error occured. Please try again after a few seconds.');
                 }else{
-                    window.location.href = 'http://localhost:3000/'
+                    window.location.href = './'
                 }
             })
     }
