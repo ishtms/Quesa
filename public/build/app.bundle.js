@@ -24406,6 +24406,18 @@ var App = function (_React$Component) {
     }
 
     _createClass(App, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var context = this;
+            _superagent2.default.get('/confirm_login/quesa/data').set("Accept", 'application/json').end(function (err, response) {
+                if (err) {
+                    createToast('Server Error occured. Please try again after a few seconds.');
+                } else {
+                    context.setState(response.body.result);
+                }
+            });
+        }
+    }, {
         key: 'handleLogout',
         value: function handleLogout() {
             _superagent2.default.post('/success').send({ logout: 'yes' }).set("Accept", 'application/json').end(function (err, response) {
@@ -24419,10 +24431,44 @@ var App = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            console.log(this.state);
             return _react2.default.createElement(
                 'div',
-                { onClick: this.handleLogout.bind(this) },
-                'Hello from Main'
+                { className: 'main-container' },
+                _react2.default.createElement(
+                    'div',
+                    { id: 'navbar' },
+                    _react2.default.createElement(
+                        'span',
+                        { id: 'logo' },
+                        _react2.default.createElement('img', { height: '50px', width: '50px', src: './images/codemode.png' })
+                    ),
+                    _react2.default.createElement(
+                        'ul',
+                        null,
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Home'
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Profile'
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Forum'
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'hero'
+                        ),
+                        _react2.default.createElement('li', null)
+                    )
+                )
             );
         }
     }]);

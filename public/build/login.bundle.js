@@ -26888,7 +26888,6 @@ var Signup = function (_React$Component3) {
                                         s_user: '',
                                         s_pass: '',
                                         s_course: 'Full Stack',
-
                                         s_phone: ''
                                     });
                                 }

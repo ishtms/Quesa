@@ -20,6 +20,22 @@ router.get('/', function(req, res, next) {
         })
         
 });
+router.get('/data', function(req, res, next) {
+    UserSchema.findOne({username: req.cookies.user.username}, function(err, response){
+        if(err){
+            res.json({
+                confirmation: 'fail',
+                err: err
+            })
+        }else{
+            res.json({
+                confirmation: 'success',
+                result: response
+            })
+        }
+    })
+    
+});
 /* Entering new User */
 router.post('/', function(req, res, next) {
     console.log(req.body)

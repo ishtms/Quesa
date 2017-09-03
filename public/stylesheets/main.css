@@ -1,3 +1,26 @@
-body{
-  background-color: rosybrown
+/*rgb(47,151,190)*/
+#navbar{
+  background-color: rgb(47,151,180);
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+#logo{
+  position: absolute;
+  left: 40px;
+}
+#logo img{
+  margin-top: 5px;
+}
+
+@media (max-width: 600px){
+  #navbar{
+    height: 40px;
+  }
+  #logo img{
+    height: 30px;
+    width: 30px;
+  }
 }
