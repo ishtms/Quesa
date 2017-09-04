@@ -8,7 +8,8 @@ let UserSchema = mongoose.Schema({
     username: {type: String},
     password: {type: String},
     lname: {type: String},
-    fname: {type: String}
+    fname: {type: String},
+    confirmed: {type: Boolean, default: false}
 })
 
 module.exports = mongoose.model('UserSchema', UserSchema);

@@ -7,8 +7,16 @@ import Forum from './components/forum';
 import Viva from './components/viva';
 
 class App extends React.Component{
-    componentWillMount(){
-        var context = this;
+    constructor(props){
+        super(props);
+        this.state = {
+            fname: '',
+            lname: ''
+        }
+    }
+    componentDidMount(){
+        document.getElementById('home').click();
+        
         superagent
         .get('/confirm_login/quesa/data')
         .set("Accept", 'application/json')
@@ -16,7 +24,7 @@ class App extends React.Component{
             if(err){
                 createToast('Server Error occured. Please try again after a few seconds.');
             }else{
-               context.setState(response.body.result);
+               this.setState(response.body.result);
             }
         })
     }
@@ -35,7 +43,7 @@ class App extends React.Component{
             })
     }
     render(){
-        console.log(this.state)
+        console.log("type is ", typeof(this.state.fname))
         return (
             <BrowserRouter>
             <div className="main-container">
@@ -45,13 +53,13 @@ class App extends React.Component{
                     </span>
                     <span id="logo-text">Quesa</span>
                     <ul id="nav-links">
-                        <Link to="/"><li>Home</li></Link>
+                        <Link to="/"><li id="home">Home</li></Link>
                         <Link to="/forums"><li>Forum</li></Link>
                         <Link to="/viva"><li>Viva</li></Link>
-                        <li>Logout</li>
+                        <li onClick={this.handleLogout}>Logout</li>
                     </ul>
-                    <Route exact path="/" render={(props) => (
-                        <Home {...props} name={(this.state == null)?"":(this.state.fname + " "+this.state.lname)} />
+                    <Route exact path="/" render={() => (
+                        <Home  name={this.state.fname + " "+this.state.lname} />
                       )} />
                     <Route exact path="/viva" component={Viva} />
                     <Route exact path="/forums" component={Forum} />

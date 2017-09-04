@@ -40,7 +40,33 @@
 .main-components{
   margin-top: 60px;
 }
+#home-introduction{
+  background-color: rgba(47,163,204,0.8);
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: white;   
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#home-introduction .heading{
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-family: "Lato";
+  font-weight: 800;
+}
 @media (max-width: 600px){
+  #home-introduction{
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  #home-introduction .heading{
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+  #home-description{
+    font-size: 12px;
+  }
   #navbar{
     height: 40px;
   }
