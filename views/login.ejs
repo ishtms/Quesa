@@ -155,8 +155,13 @@
           }
 
           let BallArray = [];
-
-          for(let index = 0; index <105; index++){
+          var ballNumber;
+            if(canvasProps.width <= 600){
+                ballNumber = 50;
+            }else{
+                ballNumber = 105;
+            }
+          for(let index = 0; index <ballNumber; index++){
               BallArray.push(new Ball(_randomColorGenerator(),
                                       _randomRadiusGenerator(),
                                       _randomCordinateGenerator(0),
