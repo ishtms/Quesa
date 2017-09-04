@@ -28995,7 +28995,7 @@ var App = function (_React$Component) {
                                 { to: '/forums' },
                                 _react2.default.createElement(
                                     'li',
-                                    null,
+                                    { id: 'forum' },
                                     'Forum'
                                 )
                             ),
@@ -29004,8 +29004,17 @@ var App = function (_React$Component) {
                                 { to: '/viva' },
                                 _react2.default.createElement(
                                     'li',
-                                    null,
+                                    { id: 'viva' },
                                     'Viva'
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                { href: 'http://chat.codemode.co' },
+                                _react2.default.createElement(
+                                    'li',
+                                    { id: 'chat' },
+                                    'Chat'
                                 )
                             ),
                             _react2.default.createElement(
@@ -29051,6 +29060,8 @@ var _reactDom = __webpack_require__(43);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactRouterDom = __webpack_require__(102);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29069,6 +29080,21 @@ var Home = function (_React$Component) {
     }
 
     _createClass(Home, [{
+        key: 'goForum',
+        value: function goForum() {
+            document.getElementById('forum').click();
+        }
+    }, {
+        key: 'goChat',
+        value: function goChat() {
+            document.getElementById('chat').click();
+        }
+    }, {
+        key: 'goViva',
+        value: function goViva() {
+            document.getElementById('viva').click();
+        }
+    }, {
         key: 'render',
         value: function render() {
             console.log('child render', 'and props is ', this.props.name);
@@ -29092,6 +29118,29 @@ var Home = function (_React$Component) {
                         'If you have any questions, browse forums, and ask a question related to specific topic.',
                         _react2.default.createElement('br', null),
                         'Test your knowledge in the Viva Section. Need an imediate help? You could go to our live chat portal.'
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactRouterDom.BrowserRouter,
+                    null,
+                    _react2.default.createElement(
+                        'div',
+                        { id: 'link-area' },
+                        _react2.default.createElement(
+                            'span',
+                            { onClick: this.goChat.bind(this), id: 'link-chat', className: 'main-links' },
+                            'Chat'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { onClick: this.goForum.bind(this), id: 'link-forum', className: 'main-links' },
+                            'Forum'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { onClick: this.goViva.bind(this), id: 'link-viva', className: 'main-links' },
+                            'Viva'
+                        )
                     )
                 )
             );

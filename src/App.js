@@ -54,8 +54,9 @@ class App extends React.Component{
                     <span id="logo-text">Quesa</span>
                     <ul id="nav-links">
                         <Link to="/"><li id="home">Home</li></Link>
-                        <Link to="/forums"><li>Forum</li></Link>
-                        <Link to="/viva"><li>Viva</li></Link>
+                        <Link to="/forums"><li id="forum">Forum</li></Link>
+                        <Link to="/viva"><li id="viva">Viva</li></Link>
+                        <a href="http://chat.codemode.co"><li id="chat">Chat</li></a>
                         <li onClick={this.handleLogout}>Logout</li>
                     </ul>
                     <Route exact path="/" render={() => (
