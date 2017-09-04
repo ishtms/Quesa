@@ -57,11 +57,11 @@
 }
 @media (max-width: 600px){
   #home-introduction{
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   #home-introduction .heading{
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 20px;
   }
   #home-description{
