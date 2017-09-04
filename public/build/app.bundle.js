@@ -25777,6 +25777,8 @@ var isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
 "use strict";
 
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(3);
@@ -25848,6 +25850,8 @@ var App = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             console.log(this.state);
             return _react2.default.createElement(
                 _reactRouterDom.BrowserRouter,
@@ -25904,7 +25908,9 @@ var App = function (_React$Component) {
                                 'Logout'
                             )
                         ),
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render(props) {
+                                return _react2.default.createElement(_home2.default, _extends({}, props, { name: _this2.state == null ? "" : _this2.state.fname + " " + _this2.state.lname }));
+                            } }),
                         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/viva', component: _viva2.default }),
                         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/forums', component: _forum2.default })
                     )
@@ -29084,30 +29090,39 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Forum = function (_React$Component) {
-    _inherits(Forum, _React$Component);
+var Home = function (_React$Component) {
+    _inherits(Home, _React$Component);
 
-    function Forum() {
-        _classCallCheck(this, Forum);
+    function Home(props) {
+        _classCallCheck(this, Home);
 
-        return _possibleConstructorReturn(this, (Forum.__proto__ || Object.getPrototypeOf(Forum)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
     }
 
-    _createClass(Forum, [{
+    _createClass(Home, [{
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'div',
                 { className: 'main-components' },
-                'Hello from Main'
+                _react2.default.createElement(
+                    'div',
+                    { id: 'home-introduction' },
+                    _react2.default.createElement(
+                        'h3',
+                        null,
+                        'Welcome to forums, ',
+                        this.props.name == null ? 'Guest' : this.props.name
+                    )
+                )
             );
         }
     }]);
 
-    return Forum;
+    return Home;
 }(_react2.default.Component);
 
-exports.default = Forum;
+exports.default = Home;
 
 /***/ }),
 /* 290 */
@@ -29194,16 +29209,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Forum = function (_React$Component) {
-    _inherits(Forum, _React$Component);
+var Viva = function (_React$Component) {
+    _inherits(Viva, _React$Component);
 
-    function Forum() {
-        _classCallCheck(this, Forum);
+    function Viva() {
+        _classCallCheck(this, Viva);
 
-        return _possibleConstructorReturn(this, (Forum.__proto__ || Object.getPrototypeOf(Forum)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Viva.__proto__ || Object.getPrototypeOf(Viva)).apply(this, arguments));
     }
 
-    _createClass(Forum, [{
+    _createClass(Viva, [{
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -29214,10 +29229,10 @@ var Forum = function (_React$Component) {
         }
     }]);
 
-    return Forum;
+    return Viva;
 }(_react2.default.Component);
 
-exports.default = Forum;
+exports.default = Viva;
 
 /***/ })
 /******/ ]);

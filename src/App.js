@@ -50,7 +50,9 @@ class App extends React.Component{
                         <Link to="/viva"><li>Viva</li></Link>
                         <li>Logout</li>
                     </ul>
-                    <Route exact path="/" component={Home} />
+                    <Route exact path="/" render={(props) => (
+                        <Home {...props} name={(this.state == null)?"":(this.state.fname + " "+this.state.lname)} />
+                      )} />
                     <Route exact path="/viva" component={Viva} />
                     <Route exact path="/forums" component={Forum} />
                 </div>
