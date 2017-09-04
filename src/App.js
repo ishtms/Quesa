@@ -37,7 +37,8 @@ class App extends React.Component{
                     <span id="logo">
                         <img height='50px' width="50px" src="./images/codemode.png"/>
                     </span>
-                    <ul>
+                    <span id="logo-text">Quesa</span>
+                    <ul id="nav-links">
                         <li>Home</li>
                         <li>Profile</li>
                         <li>Forum</li>

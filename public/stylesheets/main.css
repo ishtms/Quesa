@@ -14,7 +14,22 @@
 #logo img{
   margin-top: 5px;
 }
-
+#logo-text{
+  font-size: 30px;
+  position: absolute;
+  left: 100px;
+  top: 5px;
+  color: white;
+  font-family: "Berkshire Swash"
+}
+#nav-links{
+  float: right;
+  font-size: 18px;
+}
+#nav-links li{
+  display: inline;
+  margin-right: 30px;
+}
 @media (max-width: 600px){
   #navbar{
     height: 40px;
@@ -22,5 +37,12 @@
   #logo img{
     height: 30px;
     width: 30px;
+  }
+  #logo{
+    left: 20px;
+  }
+  #logo-text{
+    font-size: 18px;
+    left: 60px;
   }
 }

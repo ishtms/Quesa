@@ -24444,8 +24444,13 @@ var App = function (_React$Component) {
                         _react2.default.createElement('img', { height: '50px', width: '50px', src: './images/codemode.png' })
                     ),
                     _react2.default.createElement(
+                        'span',
+                        { id: 'logo-text' },
+                        'Quesa'
+                    ),
+                    _react2.default.createElement(
                         'ul',
-                        null,
+                        { id: 'nav-links' },
                         _react2.default.createElement(
                             'li',
                             null,
