@@ -26,15 +26,16 @@
   float: right;
   font-size: 18px;
   font-weight: 800;
-  color: white;
+  color: white !important;
 }
 #nav-links li{
   display: inline;
   margin-right: 30px;
   cursor: pointer;
+  color: white !important;  
 }
 #nav-links li:hover{
-  color: brown
+  color: brown !important;
 }
 @media (max-width: 600px){
   #navbar{

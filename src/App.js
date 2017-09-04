@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import superagent from 'superagent'
+import {Link,BrowserRouter,Route} from 'react-router-dom';
+import Home from './components/home';
+import Forum from './components/forum';
+import Viva from './components/viva';
+
 class App extends React.Component{
     componentWillMount(){
         var context = this;
@@ -32,6 +37,7 @@ class App extends React.Component{
     render(){
         console.log(this.state)
         return (
+            <BrowserRouter>
             <div className="main-container">
                 <div id="navbar">
                     <span id="logo">
@@ -39,13 +45,18 @@ class App extends React.Component{
                     </span>
                     <span id="logo-text">Quesa</span>
                     <ul id="nav-links">
-                        <li>Home</li>
-                        <li>Profile</li>
-                        <li>Forum</li>
+                        <Link to="/"><li>Home</li></Link>
+                        <Link to="/forums"><li>Forum</li></Link>
+                        <Link to="/viva"><li>Viva</li></Link>
                         <li>Logout</li>
                     </ul>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/viva" component={Viva} />
+                    <Route exact path="/forums" component={Forum} />
                 </div>
+                
             </div>
+            </BrowserRouter>
         );
     }
 }
