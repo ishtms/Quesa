@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 
 export default class Forum extends React.Component{
     render(){
-        return(<h1>Hello form Viva!</h1>);
+        return(<div className="main-components">
+                    Hello from Viva
+                </div>);
     }
 }

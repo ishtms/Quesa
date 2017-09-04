@@ -29097,9 +29097,9 @@ var Forum = function (_React$Component) {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'h1',
-                null,
-                'Hello form Home!'
+                'div',
+                { className: 'main-components' },
+                'Hello from Main'
             );
         }
     }]);
@@ -29154,8 +29154,8 @@ var Forum = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                null,
-                'Hello from forum'
+                { className: 'main-components' },
+                'Hello from Forum'
             );
         }
     }]);
@@ -29207,9 +29207,9 @@ var Forum = function (_React$Component) {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'h1',
-                null,
-                'Hello form Viva!'
+                'div',
+                { className: 'main-components' },
+                'Hello from Viva'
             );
         }
     }]);

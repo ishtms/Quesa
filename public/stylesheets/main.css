@@ -37,6 +37,9 @@
 #nav-links li:hover{
   color: brown !important;
 }
+.main-components{
+  margin-top: 60px;
+}
 @media (max-width: 600px){
   #navbar{
     height: 40px;
@@ -44,6 +47,9 @@
   #nav-links{
     font-size: 14px;
     margin-top: 10px;
+  }
+  .main-components{
+    margin-top:40px;
   }
   #nav-links li{
     margin-right: 10px;
