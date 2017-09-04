@@ -42,8 +42,7 @@ class App extends React.Component{
                         <li>Home</li>
                         <li>Profile</li>
                         <li>Forum</li>
-                        <li></li>
-                        <li></li>
+                        <li>Logout</li>
                     </ul>
                 </div>
             </div>

@@ -25,14 +25,27 @@
 #nav-links{
   float: right;
   font-size: 18px;
+  font-weight: 800;
+  color: white;
 }
 #nav-links li{
   display: inline;
   margin-right: 30px;
+  cursor: pointer;
+}
+#nav-links li:hover{
+  color: brown
 }
 @media (max-width: 600px){
   #navbar{
     height: 40px;
+  }
+  #nav-links{
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  #nav-links li{
+    margin-right: 10px;
   }
   #logo img{
     height: 30px;

@@ -24466,7 +24466,11 @@ var App = function (_React$Component) {
                             null,
                             'Forum'
                         ),
-                        _react2.default.createElement('li', null),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            'Logout'
+                        ),
                         _react2.default.createElement('li', null)
                     )
                 )
