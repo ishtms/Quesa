@@ -29091,7 +29091,7 @@ var Home = function (_React$Component) {
                         _react2.default.createElement('br', null),
                         'If you have any questions, browse forums, and ask a question related to specific topic.',
                         _react2.default.createElement('br', null),
-                        'If you want to prepare for interview, you could hover over to Viva Section. Need an imediate help? You could go to our live chat portal.'
+                        'Test your knowledge in the Viva Section. Need an imediate help? You could go to our live chat portal.'
                     )
                 )
             );
