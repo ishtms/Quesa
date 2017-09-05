@@ -34405,7 +34405,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'blue darken-1', textClassName: 'white-text', title: 'Full Stack Developement', actions: [_react2.default.createElement(
+                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Full Stack Developement', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '
@@ -34422,7 +34422,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'blue darken-1', textClassName: 'white-text', title: 'Android Development', actions: [_react2.default.createElement(
+                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Android Development', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '
@@ -34439,7 +34439,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'blue darken-1', textClassName: 'white-text', title: 'Web Design', actions: [_react2.default.createElement(
+                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Web Design', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '
@@ -34461,7 +34461,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'blue darken-1', textClassName: 'white-text', title: 'Software Foundation', actions: [_react2.default.createElement(
+                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Software Foundation', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '
@@ -34478,7 +34478,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'blue darken-1', textClassName: 'white-text', title: 'Advance Java', actions: [_react2.default.createElement(
+                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Advance Java', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '

@@ -111,6 +111,9 @@
 #card-container .row{
   margin-bottom: 0px !important;
 }
+.green-color{
+  background-color: rgb(47, 180, 126) !important;
+}
 @media (max-width: 768px){
   #card-container{
     visibility: hidden;
