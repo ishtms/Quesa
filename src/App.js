@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import superagent from 'superagent'
-import {Link,BrowserRouter,Route} from 'react-router-dom';
 import Home from './components/home';
-import Forum from './components/forum';
-import Viva from './components/viva';
 
 class App extends React.Component{
     constructor(props){
@@ -42,10 +39,12 @@ class App extends React.Component{
                 }
             })
     }
+    navigatePage(event){
+        window.location.href = "/main/"+event.target.id;
+    }
     render(){
         console.log("type is ", typeof(this.state.fname))
         return (
-            <BrowserRouter>
             <div className="main-container">
                 <div id="navbar">
                     <span id="logo">
@@ -53,21 +52,16 @@ class App extends React.Component{
                     </span>
                     <span id="logo-text">Quesa</span>
                     <ul id="nav-links">
-                        <Link to="/"><li id="home">Home</li></Link>
-                        <Link to="/forums"><li id="forum">Forum</li></Link>
-                        <Link to="/viva"><li id="viva">Viva</li></Link>
+                        <li id="home">Home</li>
+                        <li onClick={this.navigatePage.bind(this)} id="forum">Forum</li>
+                        <li onClick={this.navigatePage.bind(this)} id="viva">Viva</li>
                         <a href="http://chat.codemode.co"><li id="chat">Chat</li></a>
                         <li onClick={this.handleLogout}>Logout</li>
                     </ul>
-                    <Route exact path="/" render={() => (
                         <Home  name={this.state.fname + " "+this.state.lname} />
-                      )} />
-                    <Route exact path="/viva" component={Viva} />
-                    <Route exact path="/forums" component={Forum} />
                 </div>
                 
             </div>
-            </BrowserRouter>
         );
     }
 }

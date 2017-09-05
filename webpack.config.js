@@ -4,7 +4,9 @@ var path = require('path');
 module.exports = {
     entry: {
         app: './src/app.js',
-        login: './src/login.js'
+        login: './src/login.js',
+        forum: './src/forum.js',
+        viva: './src/viva.js'
     },
     output: {
         filename: 'public/build/[name].bundle.js',
