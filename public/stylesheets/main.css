@@ -100,16 +100,19 @@
     display: block;
     margin: 7px 0 0 0;
     width: 100%;
+    padding: 20px 100px;     
   }
   #link-viva{
     display: block;
     margin-top: 7px;
     width: 100%;
+    padding: 20px 100px;     
   }
   #link-chat{
     display: block;
     margin-top: 0px;
     width: 100%;
+    padding: 20px 100px;     
   }
   #link-area{
     height: 350px !important;
