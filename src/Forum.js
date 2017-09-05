@@ -1,9 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
-class Forum extends React.Component{
+class Something extends React.Component{
     render(){
-        return <h1>Hi from forums</h1>
+        return(
+            <div>
+            
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            v
+            v
+            v
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            v
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+            <h1>asdfasdfasfsf</h1>
+
+            </div>
+        );
+    }
+}
+class Forum extends React.Component{
+  
+    render(){
+        return (
+            <BrowserRouter>
+
+                <div style={{overflow: 'auto'}}>
+                  hi
+                </div>
+            </BrowserRouter>
+        );
     }
 }
 ReactDOM.render(<Forum/>,document.getElementById('forum'));
