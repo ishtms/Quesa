@@ -76,6 +76,10 @@
  padding: 30px 100px; 
  background-color: white;
 }
+#link-viva:hover, #link-chat:hover, #link-forum:hover{
+  background-color: #36393B;
+  color: white;
+}
 #link-viva{
   border-radius: 4px;
   cursor: pointer;
