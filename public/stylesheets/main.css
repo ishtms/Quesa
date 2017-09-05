@@ -105,10 +105,16 @@
 #index-container{
   margin-top: 60px;
 }
+#side-nav, #nav-trigger{
+  visibility: hidden;
+}
 @media (max-width: 768px){
   #index-container{
     margin-top: 40px;
   } 
+  #side-nav, #nav-trigger{
+    visibility: visible;
+  }
   #link-forum{
     display: block;
     margin: 7px 0 0 0;

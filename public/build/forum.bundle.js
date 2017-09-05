@@ -34317,7 +34317,9 @@ var _superagent = __webpack_require__(201);
 
 var _superagent2 = _interopRequireDefault(_superagent);
 
-var _reactMaterialize = __webpack_require__(207);
+var _sidenavigation = __webpack_require__(294);
+
+var _sidenavigation2 = _interopRequireDefault(_sidenavigation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34357,62 +34359,14 @@ var ForumIndex = function (_React$Component) {
         key: 'render',
         value: function render() {
             console.log(this.props.data);
-            var fullname = this.props.data.fname + ' ' + this.props.data.lname;
-            var Email = this.props.data.email;
-            var Pic = "../images/" + this.props.data.course + ".png";
+
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(
                     'div',
                     { id: 'index-container' },
-                    _react2.default.createElement(
-                        _reactMaterialize.SideNav,
-                        { id: 'side-nav',
-                            trigger: _react2.default.createElement(
-                                _reactMaterialize.Button,
-                                { style: { width: '100%', transform: "scaleY(2)", marginTop: "14px" } },
-                                'Menu'
-                            ),
-                            options: { closeOnClick: true } },
-                        _react2.default.createElement(_reactMaterialize.SideNavItem, { userView: true,
-                            user: {
-                                background: '../images/background.jpg',
-                                image: Pic,
-                                name: fullname,
-                                email: Email
-                            }
-                        }),
-                        _react2.default.createElement(
-                            _reactMaterialize.SideNavItem,
-                            { href: '#!icon', icon: 'airplay' },
-                            'FullStack Development'
-                        ),
-                        _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
-                        _react2.default.createElement(
-                            _reactMaterialize.SideNavItem,
-                            { href: '#!icon', icon: 'android' },
-                            'Android Development'
-                        ),
-                        _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
-                        _react2.default.createElement(
-                            _reactMaterialize.SideNavItem,
-                            { href: '#!icon', icon: 'code' },
-                            'Software Foundation'
-                        ),
-                        _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
-                        _react2.default.createElement(
-                            _reactMaterialize.SideNavItem,
-                            { href: '#!icon', icon: 'face' },
-                            'Web-Design'
-                        ),
-                        _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
-                        _react2.default.createElement(
-                            _reactMaterialize.SideNavItem,
-                            { href: '#!icon', icon: 'shopping_cart' },
-                            'Advance Java'
-                        )
-                    )
+                    _react2.default.createElement(_sidenavigation2.default, { data: this.props.data })
                 )
             );
         }
@@ -34422,6 +34376,107 @@ var ForumIndex = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = ForumIndex;
+
+/***/ }),
+/* 294 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(90);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactMaterialize = __webpack_require__(207);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SideNavigation = function (_React$Component) {
+    _inherits(SideNavigation, _React$Component);
+
+    function SideNavigation() {
+        _classCallCheck(this, SideNavigation);
+
+        return _possibleConstructorReturn(this, (SideNavigation.__proto__ || Object.getPrototypeOf(SideNavigation)).apply(this, arguments));
+    }
+
+    _createClass(SideNavigation, [{
+        key: 'render',
+        value: function render() {
+            var fullname = this.props.data.fname + ' ' + this.props.data.lname;
+            var Email = this.props.data.email;
+            var Pic = "../images/" + this.props.data.course + ".png";
+            return _react2.default.createElement(
+                _reactMaterialize.SideNav,
+                { id: 'side-nav',
+                    trigger: _react2.default.createElement(
+                        _reactMaterialize.Button,
+                        { id: 'nav-trigger', style: { width: '100%', transform: "scaleY(2)", marginTop: "14px" } },
+                        'Open Forum Index'
+                    ),
+                    options: { closeOnClick: true } },
+                _react2.default.createElement(_reactMaterialize.SideNavItem, { userView: true,
+                    user: {
+                        background: '../images/background.jpg',
+                        image: Pic,
+                        name: fullname,
+                        email: Email
+                    }
+                }),
+                _react2.default.createElement(
+                    _reactMaterialize.SideNavItem,
+                    { href: '#!icon', icon: 'airplay' },
+                    'FullStack Development'
+                ),
+                _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
+                _react2.default.createElement(
+                    _reactMaterialize.SideNavItem,
+                    { href: '#!icon', icon: 'android' },
+                    'Android Development'
+                ),
+                _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
+                _react2.default.createElement(
+                    _reactMaterialize.SideNavItem,
+                    { href: '#!icon', icon: 'code' },
+                    'Software Foundation'
+                ),
+                _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
+                _react2.default.createElement(
+                    _reactMaterialize.SideNavItem,
+                    { href: '#!icon', icon: 'face' },
+                    'Web-Design'
+                ),
+                _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
+                _react2.default.createElement(
+                    _reactMaterialize.SideNavItem,
+                    { href: '#!icon', icon: 'shopping_cart' },
+                    'Advance Java'
+                )
+            );
+        }
+    }]);
+
+    return SideNavigation;
+}(_react2.default.Component);
+
+exports.default = SideNavigation;
 
 /***/ })
 /******/ ]);
