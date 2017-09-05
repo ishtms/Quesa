@@ -42,6 +42,7 @@ export default class ForumIndex extends React.Component{
                         Start asking and helping today!
                     </div>
                 </div>
+                <br />
                 <div id="card-container">
                     <Row>
                         <Link to="/main/forum/fullstack"><Col l={4} m={4} s={4}>

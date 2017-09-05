@@ -34391,6 +34391,7 @@ var ForumIndex = function (_React$Component) {
                             'Start asking and helping today!'
                         )
                     ),
+                    _react2.default.createElement('br', null),
                     _react2.default.createElement(
                         'div',
                         { id: 'card-container' },
