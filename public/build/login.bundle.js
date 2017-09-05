@@ -31386,27 +31386,27 @@ var Signup = function (_React$Component3) {
                     { value: this.state.s_course, s: 12, type: 'select', label: 'Choose Course', onChange: this.handleChange.bind(this), id: 's_course', style: { color: 'white' } },
                     _react2.default.createElement(
                         'option',
-                        { className: 'circle', style: { color: 'white' }, value: 'Full Stack' },
+                        { className: 'circle', style: { color: 'white' }, value: 'fullstack' },
                         'Full Stack Web Development'
                     ),
                     _react2.default.createElement(
                         'option',
-                        { style: { textAlign: 'center !important' }, value: 'Android' },
+                        { style: { textAlign: 'center !important' }, value: 'android' },
                         'Android Development'
                     ),
                     _react2.default.createElement(
                         'option',
-                        { style: { color: 'white' }, value: 'Web Design' },
+                        { style: { color: 'white' }, value: 'html' },
                         'Web Design'
                     ),
                     _react2.default.createElement(
                         'option',
-                        { style: { color: 'white' }, value: 'Software Foundation' },
+                        { style: { color: 'white' }, value: 'foundation' },
                         'Software Foundation'
                     ),
                     _react2.default.createElement(
                         'option',
-                        { style: { color: 'white' }, value: 'Advance Java' },
+                        { style: { color: 'white' }, value: 'javaadvance' },
                         'Advance Java'
                     )
                 ),

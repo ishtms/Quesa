@@ -29822,7 +29822,13 @@ var App = function (_React$Component) {
     }, {
         key: 'navigatePage',
         value: function navigatePage(event) {
-            window.location.href = "/main/" + event.target.id;
+            if (this.state.confirmed) {
+                if (event.target.id == "chat") {
+                    window.location.href = "http://chat.codemode.co";
+                } else window.location.href = "/main/" + event.target.id;
+            } else {
+                createToast("Please validate your account to access forums!");
+            }
         }
     }, {
         key: 'render',
@@ -29863,13 +29869,9 @@ var App = function (_React$Component) {
                             'Viva'
                         ),
                         _react2.default.createElement(
-                            'a',
-                            { href: 'http://chat.codemode.co' },
-                            _react2.default.createElement(
-                                'li',
-                                { id: 'chat' },
-                                'Chat'
-                            )
+                            'li',
+                            { onClick: this.navigatePage.bind(this), id: 'chat' },
+                            'Chat'
                         ),
                         _react2.default.createElement(
                             'li',

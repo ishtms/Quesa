@@ -76,6 +76,9 @@
  padding: 30px 100px; 
  background-color: white;
 }
+#index-hello{
+  background-color: red;
+}
 #link-viva:hover, #link-chat:hover, #link-forum:hover{
   background-color: #36393B;
   color: white;
@@ -99,7 +102,13 @@
   left: -50px;
   top: 10px;
 }
+#index-container{
+  margin-top: 60px;
+}
 @media (max-width: 768px){
+  #index-container{
+    margin-top: 40px;
+  } 
   #link-forum{
     display: block;
     margin: 7px 0 0 0;

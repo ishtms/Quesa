@@ -40,7 +40,14 @@ class App extends React.Component{
             })
     }
     navigatePage(event){
-        window.location.href = "/main/"+event.target.id;
+        if(this.state.confirmed){
+            if(event.target.id == "chat"){
+                window.location.href="http://chat.codemode.co";
+            }else
+            window.location.href = "/main/"+event.target.id;
+        }else{
+            createToast("Please validate your account to access forums!")
+        }
     }
     render(){
         console.log("type is ", typeof(this.state.fname))
@@ -55,7 +62,7 @@ class App extends React.Component{
                         <li id="home">Home</li>
                         <li onClick={this.navigatePage.bind(this)} id="forum">Forum</li>
                         <li onClick={this.navigatePage.bind(this)} id="viva">Viva</li>
-                        <a href="http://chat.codemode.co"><li id="chat">Chat</li></a>
+                        <li onClick={this.navigatePage.bind(this)} id="chat">Chat</li>
                         <li onClick={this.handleLogout}>Logout</li>
                     </ul>
                         <Home  name={this.state.fname + " "+this.state.lname} />

@@ -194,11 +194,11 @@ class Signup extends React.Component{
                         <Input value={this.state.s_pass} icon="vpn_key" id="s_pass" type="password" label="Password" s={12} onChange={this.handleChange.bind(this)} />
                         <Input value={this.state.s_phone} icon="favorite" id="s_phone" type="number"  label="Phone Number" s={12} onChange={this.handleChange.bind(this)} />                                                
                         <Input value={this.state.s_course} s={12} type='select' label="Choose Course" onChange={this.handleChange.bind(this)} id="s_course" style={{color: 'white'}}>
-                            <option className="circle" style={{color: 'white'}} value='Full Stack'>Full Stack Web Development</option>
-                            <option style={{textAlign:'center !important'}} value='Android'>Android Development</option>
-                            <option style={{color: 'white'}} value='Web Design'>Web Design</option>
-                            <option style={{color: 'white'}} value='Software Foundation'>Software Foundation</option>
-                            <option style={{color: 'white'}} value='Advance Java'>Advance Java</option>
+                            <option className="circle" style={{color: 'white'}} value='fullstack'>Full Stack Web Development</option>
+                            <option style={{textAlign:'center !important'}} value='android'>Android Development</option>
+                            <option style={{color: 'white'}} value='html'>Web Design</option>
+                            <option style={{color: 'white'}} value='foundation'>Software Foundation</option>
+                            <option style={{color: 'white'}} value='javaadvance'>Advance Java</option>
                         </Input>                      
                         <Input s={6} name='group1' type='radio' value='male' label='Male' checked/>
                         <Input s={6} name='group1' type='radio' value='female' label='Female' />
