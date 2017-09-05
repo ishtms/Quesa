@@ -108,7 +108,13 @@
 #side-nav, #nav-trigger{
   display: none;
 }
+#card-container .row{
+  margin-bottom: 0px !important;
+}
 @media (max-width: 768px){
+  #card-container{
+    visibility: hidden;
+  }
   #index-container{
     margin-top: 55px;
   } 
