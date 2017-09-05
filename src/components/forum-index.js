@@ -34,7 +34,7 @@ export default class ForumIndex extends React.Component{
             
             <div id="index-container">
             <SideNav id="side-nav"
-                trigger={<Button style={{width: '100%', transform:"scale(2)", marginTop:"10px"}}>Menu</Button>}
+                trigger={<Button style={{width: '100%', transform:"scaleY(2)", marginTop:"10px"}}>Menu</Button>}
                 options={{ closeOnClick: true }}>
                 <SideNavItem userView
                     user={{
