@@ -40,7 +40,7 @@
 .main-components{
   margin-top: 60px;
 }
-#home-introduction{
+#home-introduction, #index-introduction{
   background-color: rgba(47,163,204,0.8);
   text-align: center;
   padding-top: 30px;
@@ -50,7 +50,7 @@
   padding-right: 10px;
   font-family:'Josefin Sans';
 }
-#home-introduction .heading{
+#home-introduction .heading, #index-introduction .heading{
   margin-bottom: 30px;
   font-size: 30px;
   font-family: "Kanit";
@@ -106,14 +106,14 @@
   margin-top: 60px;
 }
 #side-nav, #nav-trigger{
-  visibility: hidden;
+  display: none;
 }
 @media (max-width: 768px){
   #index-container{
-    margin-top: 40px;
+    margin-top: 55px;
   } 
   #side-nav, #nav-trigger{
-    visibility: visible;
+    display: block;
   }
   #link-forum{
     display: block;
@@ -137,14 +137,14 @@
     height: 350px !important;
     padding: 10px 10px;
   }
-  #home-introduction{
+  #home-introduction, #index-introduction{
     padding-bottom: 10px;
   }
-  #home-introduction .heading{
+  #home-introduction .heading, #index-introduction .heading{
     margin-bottom: 7px;
     font-size: 20px;
   }
-  #home-description{
+  #home-description, #index-description{
     font-size: 12px;
   }
   #navbar{

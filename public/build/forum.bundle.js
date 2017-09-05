@@ -34359,14 +34359,36 @@ var ForumIndex = function (_React$Component) {
         key: 'render',
         value: function render() {
             console.log(this.props.data);
-
+            var name = this.props.data.fname;
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(
                     'div',
                     { id: 'index-container' },
-                    _react2.default.createElement(_sidenavigation2.default, { data: this.props.data })
+                    _react2.default.createElement(_sidenavigation2.default, { data: this.props.data }),
+                    _react2.default.createElement(
+                        'div',
+                        { id: 'index-introduction' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'heading' },
+                            'Start asking questions now, ',
+                            name,
+                            '!'
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { id: 'index-description' },
+                            'You can ask any question regarding the topic/course you\'re enrolled in.',
+                            _react2.default.createElement('br', null),
+                            'You can get feedback on a project you\'re working or built already by posting the link in the specific forum.',
+                            _react2.default.createElement('br', null),
+                            'The more upvotes your answers get, the more you\'ll be noticed.',
+                            _react2.default.createElement('br', null),
+                            'Start asking and helping today!'
+                        )
+                    )
                 )
             );
         }
