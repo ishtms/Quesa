@@ -34371,7 +34371,7 @@ var ForumIndex = function (_React$Component) {
                         { id: 'side-nav',
                             trigger: _react2.default.createElement(
                                 _reactMaterialize.Button,
-                                { style: { width: '100%', transform: "scaleY(2)", marginTop: "10px" } },
+                                { style: { width: '100%', transform: "scaleY(2)", marginTop: "14px" } },
                                 'Menu'
                             ),
                             options: { closeOnClick: true } },
