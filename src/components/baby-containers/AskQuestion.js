@@ -16,7 +16,7 @@ export default class AskQuestion extends Component{
                         <Input s={11} m={9} l={9} icon="comment" id="currDescription" label="Description" onChange={this.props.callback.bind(this)} />
                     </Col>
                     <Col s={3} m={3} l={3}>
-                        <Button s={2} large className='red' waves='light' icon='check_circle' id="s_submit" onClick={this.props.handleSubmit.bind(this)}>Ask</Button>
+                        <Button  large className='red' waves='light' icon='check_circle' id="s_submit" onClick={this.props.handleSubmit.bind(this)}>Ask</Button>
                     </Col>
                 </Row>
                 <hr />

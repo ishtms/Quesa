@@ -19,7 +19,9 @@ var mongoose = require('mongoose');
 
 let QuestionSchemas = mongoose.Schema({
     question: {type: Object, default: {}},
-    answers: {type: Object, default: []}
+    answers: {type: Object, default: []},
+    course: "",
+    user: ''
 })
 
 module.exports = mongoose.model('QuestionSchemas', QuestionSchemas);

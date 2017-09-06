@@ -34677,31 +34677,51 @@ var Display = function (_React$Component) {
         _this.state = {
             questions: [],
             currQuestion: '',
-            totalQuestions: '',
-            totalAnswers: '',
+            totalQuestions: 0,
+            totalAnswers: 0,
             course: _this.props.data,
             user: '',
-            currDescription: ''
+            currDescription: '',
+            sort: 'latest'
         };
         return _this;
     }
 
     _createClass(Display, [{
         key: 'componentWillMount',
-        value: function componentWillMount() {
+        value: function componentWillMount() {}
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
             var _this2 = this;
 
-            _superagent2.default.get('/confirm_login/quesa/data').end(function (err, response) {
+            var StateObject = Object.assign({}, this.state);
+            var totalQuestions = 0;
+            var totalAnswers = 0;
+            _superagent2.default.get('/confirm_login/quesa/data').query().set("Accept", "application/json").end(function (err, response) {
                 if (err) {
-                    createToast("Error fetching data.");
+                    createToast("Error fetching data from the server. Please check your internet connection and try again.");
                 } else {
-                    _this2.setState({ user: response.body.fname + " " + response.body.lname });
+                    var name = response.body.result.fname + " " + response.body.result.lname;
+                    StateObject.user = name;
+                    _this2.setState(StateObject);
+                }
+            });
+            _superagent2.default.get("/main/forum/questions/getdata/question").query({ course: this.state.course }).set("Accept", "application/json").end(function (err, response) {
+                if (err) {
+                    createToast("Server error occured. Please check your internet connection and try again.");
+                } else {
+                    StateObject.totalQuestions = response.body.result.length;
+                    StateObject.questions = response.body.result;
+
+                    for (var index = 0; index < response.body.result.length; index++) {
+                        totalAnswers += response.body.result[index].answers.length;
+                    }
+                    StateObject.totalAnswers = totalAnswers;
+                    _this2.setState(StateObject);
                 }
             });
         }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {}
     }, {
         key: 'handleSubmit',
         value: function handleSubmit() {
@@ -34712,17 +34732,21 @@ var Display = function (_React$Component) {
             } else if (this.state.currDescription.length < 10) {
                 createToast('Please enter a descriptive description.');
             } else {
-                _superagent2.default.post('questions/submitdata/answer').send({
+                _superagent2.default.post('questions/submitdata/question').send({
                     ques: this.state.currQuestion + "?",
-                    askBy: this.state.user,
-                    course: this.state.course
+                    course: this.state.course,
+                    user: this.state.user,
+                    description: this.state.currDescription
                 }).set("Accept", "application/json").end(function (err, response) {
                     if (err) {
-                        console.log(err);
                         createToast("Error submiting question. Please check your internet connection and try again!");
                     } else {
                         createToast("Question Submitted");
-                        _this3.setState({ currDescription: "", currQuestion: "" });
+                        var StateObject = Object.assign({}, _this3.state);
+                        StateObject.questions.unshift({ user: _this3.state.user, question: { ques: _this3.state.currQuestion, description: _this3.state.currDescription, askTime: new Date() } });
+                        StateObject.currDescription = "";
+                        StateObject.currQuestion = "";
+                        _this3.setState(StateObject);
                         document.getElementById('currQuestion').value = "";
                         document.getElementById('currDescription').value = "";
                     }
@@ -34739,7 +34763,8 @@ var Display = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            console.log(this.state);
+
+            console.log('this state is', this.state);
             return _react2.default.createElement(
                 'div',
                 { id: 'display-container' },
@@ -34754,12 +34779,23 @@ var Display = function (_React$Component) {
                     _react2.default.createElement(
                         _reactMaterialize.Col,
                         { s: 12, m: 8, l: 8 },
-                        _react2.default.createElement(_AskQuestion2.default, { handleSubmit: this.handleSubmit.bind(this), callback: this.handleChange.bind(this) })
+                        _react2.default.createElement(_AskQuestion2.default, { handleSubmit: this.handleSubmit.bind(this), callback: this.handleChange.bind(this) }),
+                        console.log(this.state.questions),
+                        _react2.default.createElement(_DisplayQuestions2.default, { questions: this.state.questions, sort: this.state.sort })
                     ),
                     _react2.default.createElement(
                         _reactMaterialize.Col,
                         _defineProperty({ s: 0, m: 4 }, 'm', 4),
-                        'Forum Statistics'
+                        _react2.default.createElement(
+                            'h5',
+                            null,
+                            'Forum Statistics'
+                        ),
+                        'Total questions in Android : ',
+                        this.state.totalQuestions,
+                        _react2.default.createElement('br', null),
+                        'Total answers in Android : ',
+                        this.state.totalAnswers
                     )
                 )
             );
@@ -34836,7 +34872,7 @@ var AskQuestion = function (_Component) {
                         { s: 3, m: 3, l: 3 },
                         _react2.default.createElement(
                             _reactMaterialize.Button,
-                            { s: 2, large: true, className: 'red', waves: 'light', icon: 'check_circle', id: 's_submit', onClick: this.props.handleSubmit.bind(this) },
+                            { large: true, className: 'red', waves: 'light', icon: 'check_circle', id: 's_submit', onClick: this.props.handleSubmit.bind(this) },
                             'Ask'
                         )
                     )
@@ -34858,11 +34894,75 @@ exports.default = AskQuestion;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactMaterialize = __webpack_require__(208);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DisplayQuestions = function (_React$Component) {
+    _inherits(DisplayQuestions, _React$Component);
+
+    function DisplayQuestions() {
+        _classCallCheck(this, DisplayQuestions);
+
+        return _possibleConstructorReturn(this, (DisplayQuestions.__proto__ || Object.getPrototypeOf(DisplayQuestions)).apply(this, arguments));
+    }
+
+    _createClass(DisplayQuestions, [{
+        key: 'render',
+        value: function render() {
+            var top = "";
+            var latestSort = this.props.questions.sort(function (a, b) {
+                return b.question.askTime > a.question.askTime;
+            });
+            console.log("SOreted is  ", latestSort);
+            var latest = this.props.questions.map(function (curr, i) {
+                return _react2.default.createElement(
+                    _reactMaterialize.Col,
+                    { key: i, m: 12, s: 12 },
+                    _react2.default.createElement(
+                        _reactMaterialize.Card,
+                        { className: 'white darken-1', textClassName: 'black-text', title: curr.question.ques + "  asked by - " + curr.user, actions: [_react2.default.createElement(
+                                'a',
+                                { href: '#' },
+                                'Asked on -',
+                                new Date(curr.question.askTime).toString().split("").splice(0, 15).join("") + " " + new Date(curr.question.askTime).toLocaleTimeString()
+                            )] },
+                        curr.question.description
+                    )
+                );
+            });
+            return this.props.sort == 'latest' ? _react2.default.createElement(
+                'div',
+                null,
+                latest
+            ) : _react2.default.createElement(
+                'h1',
+                null,
+                'nosort'
+            );
+        }
+    }]);
+
+    return DisplayQuestions;
+}(_react2.default.Component);
+
+exports.default = DisplayQuestions;
 
 /***/ }),
 /* 297 */
