@@ -34937,11 +34937,17 @@ var DisplayQuestions = function (_React$Component) {
                     { key: i, m: 12, s: 12 },
                     _react2.default.createElement(
                         _reactMaterialize.Card,
-                        { className: 'white darken-1', textClassName: 'black-text', title: curr.question.ques + "  asked by - " + curr.user, actions: [_react2.default.createElement(
+                        { className: 'gra-back darken-1', textClassName: 'black-text', title: curr.question.ques + "  asked by - " + curr.user, actions: [_react2.default.createElement(
                                 'a',
-                                { href: '#' },
+                                { href: '#', style: { color: 'white' } },
                                 'Asked on -',
-                                new Date(curr.question.askTime).toString().split("").splice(0, 15).join("") + " " + new Date(curr.question.askTime).toLocaleTimeString()
+                                new Date(curr.question.askTime).toString().split("").splice(0, 15).join("") + " " + new Date(curr.question.askTime).toLocaleTimeString(),
+                                _react2.default.createElement(
+                                    'span',
+                                    { style: { float: 'right' } },
+                                    curr.answers.length,
+                                    ' answers'
+                                )
                             )] },
                         curr.question.description
                     )

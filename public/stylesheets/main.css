@@ -8,6 +8,9 @@
   left: 0;
   z-index: 1000;
 }
+.gra-back{
+  background-color: #B9ADAD !important;
+}
 #logo{
   position: absolute;
   left: 40px;
