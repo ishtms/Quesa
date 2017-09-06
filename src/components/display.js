@@ -3,6 +3,7 @@ import {Row, Col} from 'react-materialize';
 import AskQuestion from './baby-containers/AskQuestion';
 import DisplayQuestions from './baby-containers/DisplayQuestions';
 import Statistics from './baby-containers/Statistics';
+import superagent from 'superagent';
 
 export default class Display extends React.Component{
     constructor(props){
@@ -17,8 +18,19 @@ export default class Display extends React.Component{
             currDescription: ''
         }
     }
+    componentWillMount(){
+        superagent
+            .get('/confirm_login/quesa/data')
+            .end((err,response)=>{
+                if(err){
+                    createToast("Error fetching data.")
+                }else{
+                    this.setState({user: response.body.fname + " " + response.body.lname})
+                }
+            })
+    }
     componentDidMount(){
-        
+
     }
     handleSubmit(){
         if(this.state.currQuestion.length < 20){
@@ -26,7 +38,25 @@ export default class Display extends React.Component{
         }else if(this.state.currDescription.length < 10){
             createToast('Please enter a descriptive description.')
         }else{
-            createToast("Submit")
+            superagent
+                .post('questions/submitdata/answer')
+                .send({
+                    ques: this.state.currQuestion+"?",
+                    askBy: this.state.user,
+                    course: this.state.course
+                })
+                .set("Accept", "application/json")
+                .end((err, response)=>{
+                    if(err){
+                        console.log(err)
+                        createToast("Error submiting question. Please check your internet connection and try again!");
+                    }else{
+                        createToast("Question Submitted");
+                        this.setState({currDescription: "", currQuestion: ""})
+                        document.getElementById('currQuestion').value = ""
+                        document.getElementById('currDescription').value = ""
+                    }
+                })
         }
     }
     handleChange(event){

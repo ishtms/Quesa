@@ -34652,6 +34652,10 @@ var _Statistics = __webpack_require__(297);
 
 var _Statistics2 = _interopRequireDefault(_Statistics);
 
+var _superagent = __webpack_require__(207);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -34683,17 +34687,46 @@ var Display = function (_React$Component) {
     }
 
     _createClass(Display, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this2 = this;
+
+            _superagent2.default.get('/confirm_login/quesa/data').end(function (err, response) {
+                if (err) {
+                    createToast("Error fetching data.");
+                } else {
+                    _this2.setState({ user: response.body.fname + " " + response.body.lname });
+                }
+            });
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {}
     }, {
         key: 'handleSubmit',
         value: function handleSubmit() {
+            var _this3 = this;
+
             if (this.state.currQuestion.length < 20) {
                 createToast('Question should be atleast 20 characters long!');
             } else if (this.state.currDescription.length < 10) {
                 createToast('Please enter a descriptive description.');
             } else {
-                createToast("Submit");
+                _superagent2.default.post('questions/submitdata/answer').send({
+                    ques: this.state.currQuestion + "?",
+                    askBy: this.state.user,
+                    course: this.state.course
+                }).set("Accept", "application/json").end(function (err, response) {
+                    if (err) {
+                        console.log(err);
+                        createToast("Error submiting question. Please check your internet connection and try again!");
+                    } else {
+                        createToast("Question Submitted");
+                        _this3.setState({ currDescription: "", currQuestion: "" });
+                        document.getElementById('currQuestion').value = "";
+                        document.getElementById('currDescription').value = "";
+                    }
+                });
             }
         }
     }, {

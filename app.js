@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var login = require('./routes/login');
 var main = require('./routes/main');
 var confirm_login = require('./routes/confirm_login');
+var questions = require('./routes/questions');
 
 var app = express();
 
@@ -34,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', login);
 app.use('/main', main);
 app.use('/confirm_login/quesa/', confirm_login)
-
+app.use('/main/forum/questions', questions);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
