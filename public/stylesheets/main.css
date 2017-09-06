@@ -114,6 +114,13 @@
 .green-color{
   background-color: rgb(47, 180, 126) !important;
 }
+hr{
+  background-color: #79EF6B !important;
+  height: 2px !important;
+  margin-top: 4px !important;
+  color: #12FF12;
+  border: none;
+}
 #display-container{
   margin-top: 60px;
 }

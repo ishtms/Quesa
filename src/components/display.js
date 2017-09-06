@@ -13,11 +13,29 @@ export default class Display extends React.Component{
             totalQuestions: '',
             totalAnswers: '',
             course: this.props.data, 
-            user: ''
+            user: '',
+            currDescription: ''
         }
     }
+    componentDidMount(){
+        
+    }
+    handleSubmit(){
+        if(this.state.currQuestion.length < 20){
+            createToast('Question should be atleast 20 characters long!');
+        }else if(this.state.currDescription.length < 10){
+            createToast('Please enter a descriptive description.')
+        }else{
+            createToast("Submit")
+        }
+    }
+    handleChange(event){
+        let StateObject = Object.assign({}, this.state);
+        StateObject[event.target.id] = event.target.value;
+        this.setState(StateObject)
+    }
     render(){
-        console.log(this.state.course)
+        console.log(this.state)
         return (
             <div id="display-container">
                 <div id="display-heading">
@@ -25,7 +43,7 @@ export default class Display extends React.Component{
                 </div>
                 <Row> 
                     <Col s={12} m={8} l={8} >
-                       <AskQuestion />
+                       <AskQuestion handleSubmit={this.handleSubmit.bind(this)}  callback={this.handleChange.bind(this)} />
                        {/* <DisplayQuestions />*/} 
                     </Col>
                     <Col s={0} m={4} m={4}>

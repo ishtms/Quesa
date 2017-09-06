@@ -34676,15 +34676,37 @@ var Display = function (_React$Component) {
             totalQuestions: '',
             totalAnswers: '',
             course: _this.props.data,
-            user: ''
+            user: '',
+            currDescription: ''
         };
         return _this;
     }
 
     _createClass(Display, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit() {
+            if (this.state.currQuestion.length < 20) {
+                createToast('Question should be atleast 20 characters long!');
+            } else if (this.state.currDescription.length < 10) {
+                createToast('Please enter a descriptive description.');
+            } else {
+                createToast("Submit");
+            }
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(event) {
+            var StateObject = Object.assign({}, this.state);
+            StateObject[event.target.id] = event.target.value;
+            this.setState(StateObject);
+        }
+    }, {
         key: 'render',
         value: function render() {
-            console.log(this.state.course);
+            console.log(this.state);
             return _react2.default.createElement(
                 'div',
                 { id: 'display-container' },
@@ -34699,7 +34721,7 @@ var Display = function (_React$Component) {
                     _react2.default.createElement(
                         _reactMaterialize.Col,
                         { s: 12, m: 8, l: 8 },
-                        _react2.default.createElement(_AskQuestion2.default, null)
+                        _react2.default.createElement(_AskQuestion2.default, { handleSubmit: this.handleSubmit.bind(this), callback: this.handleChange.bind(this) })
                     ),
                     _react2.default.createElement(
                         _reactMaterialize.Col,
@@ -34762,13 +34784,31 @@ var AskQuestion = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { id: 'ask-question' },
-                _react2.default.createElement(_reactMaterialize.Input, { icon: 'help', type: 'text', id: 'question', label: 'Question' }),
-                _react2.default.createElement(_reactMaterialize.Input, { icon: 'comment', id: 'question-description', label: 'Description' }),
                 _react2.default.createElement(
-                    _reactMaterialize.Button,
-                    { large: true, className: 'red', waves: 'light', icon: 'check_circle', id: 's_submit', onClick: this.handleSubmit.bind(this) },
-                    'Ask'
-                )
+                    _reactMaterialize.Row,
+                    null,
+                    _react2.default.createElement(_reactMaterialize.Input, { s: 8, icon: 'help', type: 'text', id: 'currQuestion', label: 'Question', onChange: this.props.callback.bind(this) }),
+                    _react2.default.createElement('br', null)
+                ),
+                _react2.default.createElement(
+                    _reactMaterialize.Row,
+                    null,
+                    _react2.default.createElement(
+                        _reactMaterialize.Col,
+                        { s: 9, m: 9, l: 9 },
+                        _react2.default.createElement(_reactMaterialize.Input, { s: 11, m: 9, l: 9, icon: 'comment', id: 'currDescription', label: 'Description', onChange: this.props.callback.bind(this) })
+                    ),
+                    _react2.default.createElement(
+                        _reactMaterialize.Col,
+                        { s: 3, m: 3, l: 3 },
+                        _react2.default.createElement(
+                            _reactMaterialize.Button,
+                            { s: 2, large: true, className: 'red', waves: 'light', icon: 'check_circle', id: 's_submit', onClick: this.props.handleSubmit.bind(this) },
+                            'Ask'
+                        )
+                    )
+                ),
+                _react2.default.createElement('hr', null)
             );
         }
     }]);
