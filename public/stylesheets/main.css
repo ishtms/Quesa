@@ -114,7 +114,13 @@
 .green-color{
   background-color: rgb(47, 180, 126) !important;
 }
+#display-container{
+  margin-top: 60px;
+}
 @media (max-width: 768px){
+  #display-container{
+    margin-top: 40px;
+  }
   #card-container{
     visibility: hidden;
   }

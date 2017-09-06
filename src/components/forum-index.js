@@ -55,7 +55,7 @@ export default class ForumIndex extends React.Component{
                             Last Post By : on :
                             </Card>
                         </Col></Link>
-                        <Link to="/main/forum/design"><Col l={4} m={4} s={4}>
+                        <Link to="/main/forum/html"><Col l={4} m={4} s={4}>
                             <Card className='green-color darken-1' textClassName='white-text' title='Web Design' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
                             Last Post By : on :
                             </Card>
@@ -68,7 +68,7 @@ export default class ForumIndex extends React.Component{
                             Last Post By : on :
                             </Card>
                         </Col></Link>
-                        <Link to="/main/forum/advjava"><Col l={4} m={4} s={4}>
+                        <Link to="/main/forum/javaadvance"><Col l={4} m={4} s={4}>
                             <Card className='green-color darken-1' textClassName='white-text' title='Advance Java' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
                             Last Post By : on :
                             </Card>
