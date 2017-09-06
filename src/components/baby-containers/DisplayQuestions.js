@@ -4,11 +4,11 @@ import {Col, Card} from 'react-materialize';
 export default class DisplayQuestions extends React.Component{
 
     render(){
-        var top = "";
-        var latestSort = this.props.questions.sort((a,b)=>{
-            return  b.question.askTime > a.question.askTime
-        })
-        console.log("SOreted is  ", latestSort)
+        if(this.props.sort == 'latest'){
+            this.props.questions.sort((a,b)=>{
+                return  b.question.askTime > a.question.askTime
+            })
+        }
         var latest = this.props.questions.map((curr,i)=>{
             return <Col key={i} m={12} s={12}>
                 <Card className='white darken-1' textClassName='black-text' title={curr.question.ques + "  asked by - "+curr.user} actions={[<a href='#'>Asked on - 

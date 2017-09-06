@@ -34926,11 +34926,11 @@ var DisplayQuestions = function (_React$Component) {
     _createClass(DisplayQuestions, [{
         key: 'render',
         value: function render() {
-            var top = "";
-            var latestSort = this.props.questions.sort(function (a, b) {
-                return b.question.askTime > a.question.askTime;
-            });
-            console.log("SOreted is  ", latestSort);
+            if (this.props.sort == 'latest') {
+                this.props.questions.sort(function (a, b) {
+                    return b.question.askTime > a.question.askTime;
+                });
+            }
             var latest = this.props.questions.map(function (curr, i) {
                 return _react2.default.createElement(
                     _reactMaterialize.Col,
