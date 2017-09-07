@@ -10829,27 +10829,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 96 */,
-/* 97 */
-/***/ (function(module, exports) {
-
-/**
- * Check if `obj` is an object.
- *
- * @param {Object} obj
- * @return {Boolean}
- * @api private
- */
-
-function isObject(obj) {
-  return null !== obj && 'object' === typeof obj;
-}
-
-module.exports = isObject;
-
-
-/***/ }),
-/* 98 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11082,6 +11062,26 @@ exports.Table = _Table2.default;
 exports.Tabs = _Tabs2.default;
 exports.Tag = _Tag2.default;
 exports.Toast = _Toast2.default;
+
+/***/ }),
+/* 97 */,
+/* 98 */
+/***/ (function(module, exports) {
+
+/**
+ * Check if `obj` is an object.
+ *
+ * @param {Object} obj
+ * @return {Boolean}
+ * @api private
+ */
+
+function isObject(obj) {
+  return null !== obj && 'object' === typeof obj;
+}
+
+module.exports = isObject;
+
 
 /***/ }),
 /* 99 */
@@ -23562,7 +23562,7 @@ if (typeof window !== 'undefined') { // Browser window
 
 var Emitter = __webpack_require__(209);
 var RequestBase = __webpack_require__(210);
-var isObject = __webpack_require__(97);
+var isObject = __webpack_require__(98);
 var ResponseBase = __webpack_require__(211);
 var shouldRetry = __webpack_require__(213);
 
@@ -24636,7 +24636,7 @@ Emitter.prototype.hasListeners = function(event){
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(97);
+var isObject = __webpack_require__(98);
 
 /**
  * Expose `RequestBase`.
@@ -29937,7 +29937,7 @@ var _reactDom = __webpack_require__(60);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactMaterialize = __webpack_require__(98);
+var _reactMaterialize = __webpack_require__(96);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
