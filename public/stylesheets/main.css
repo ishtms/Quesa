@@ -118,6 +118,9 @@
 .green-color{
   background-color: rgb(47, 180, 126) !important;
 }
+.hideLoader{
+  visibility: hidden
+}
 hr{
   background-color: #000000 !important;
   height: 1px !important;

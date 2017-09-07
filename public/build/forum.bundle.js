@@ -34682,7 +34682,8 @@ var Display = function (_React$Component) {
             course: _this.props.data,
             user: '',
             currDescription: '',
-            sort: 'latest'
+            sort: 'latest',
+            loading: true
         };
         return _this;
     }
@@ -34718,6 +34719,7 @@ var Display = function (_React$Component) {
                         totalAnswers += response.body.result[index].answers.length;
                     }
                     StateObject.totalAnswers = totalAnswers;
+                    StateObject.loading = false;
                     _this2.setState(StateObject);
                 }
             });
@@ -34757,6 +34759,13 @@ var Display = function (_React$Component) {
             }
         }
     }, {
+        key: 'checkAndHide',
+        value: function checkAndHide() {
+            if (this.state.loading == false) {
+                document.getElementById('loading-img').innerHTML = '';
+            }
+        }
+    }, {
         key: 'handleChange',
         value: function handleChange(event) {
             var StateObject = Object.assign({}, this.state);
@@ -34766,6 +34775,7 @@ var Display = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            this.checkAndHide();
             var LatestQuestion = this.state.questions.sort(function (a, b) {
                 return new Date(b.question.askTime) > new Date(a.question.askTime);
             });
@@ -34785,6 +34795,12 @@ var Display = function (_React$Component) {
                         _reactMaterialize.Col,
                         { s: 12, m: 8, l: 8 },
                         _react2.default.createElement(_AskQuestion2.default, { handleSubmit: this.handleSubmit.bind(this), callback: this.handleChange.bind(this) }),
+                        _react2.default.createElement(
+                            'div',
+                            { id: 'loading-img', style: { textAlign: 'center', paddingTop: "40px" } },
+                            ' ',
+                            _react2.default.createElement('img', { height: '60px', width: '100px', src: '../../images/loading-2.gif' })
+                        ),
                         _react2.default.createElement(_DisplayQuestions2.default, { answers: this.state.totalAnswers, questions: LatestQuestion, sort: this.state.sort })
                     ),
                     _react2.default.createElement(
@@ -34920,15 +34936,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var DisplayQuestions = function (_React$Component) {
     _inherits(DisplayQuestions, _React$Component);
 
-    function DisplayQuestions() {
+    function DisplayQuestions(props) {
         _classCallCheck(this, DisplayQuestions);
 
-        return _possibleConstructorReturn(this, (DisplayQuestions.__proto__ || Object.getPrototypeOf(DisplayQuestions)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (DisplayQuestions.__proto__ || Object.getPrototypeOf(DisplayQuestions)).call(this, props));
+
+        _this.state = {
+            loading: true
+        };
+        return _this;
     }
 
     _createClass(DisplayQuestions, [{
         key: 'render',
         value: function render() {
+            console.log(this.state.loading ? "State is loading" : "State loaded");
             var latest = this.props.questions.map(function (curr, i) {
                 return _react2.default.createElement(
                     _reactMaterialize.Col,

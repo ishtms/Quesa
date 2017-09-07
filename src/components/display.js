@@ -16,11 +16,11 @@ export default class Display extends React.Component{
             course: this.props.data, 
             user: '',
             currDescription: '',
-            sort: 'latest'
+            sort: 'latest',
+            loading: true
         }
     }
     componentWillMount(){
-       
     }
     componentDidMount(){
         
@@ -55,10 +55,13 @@ export default class Display extends React.Component{
                         totalAnswers+=response.body.result[index].answers.length
                     }
                     StateObject.totalAnswers = totalAnswers;
+                    StateObject.loading = false;
                     this.setState(StateObject);
+                    
                 }
             })
     }
+    
     handleSubmit(){
         if(this.state.currQuestion.length < 20){
             createToast('Question should be atleast 20 characters long!');
@@ -93,12 +96,18 @@ export default class Display extends React.Component{
                 })
         }
     }
+    checkAndHide(){
+        if(this.state.loading == false){
+            document.getElementById('loading-img').innerHTML = ''
+        }
+    }
     handleChange(event){
         let StateObject = Object.assign({}, this.state);
         StateObject[event.target.id] = event.target.value;
         this.setState(StateObject)
     }
     render(){
+        this.checkAndHide()
         var LatestQuestion = this.state.questions.sort((a,b)=>{
                 return new Date(b.question.askTime) > new Date(a.question.askTime)  
         })
@@ -111,6 +120,7 @@ export default class Display extends React.Component{
                 <Row> 
                     <Col s={12} m={8} l={8} >
                        <AskQuestion handleSubmit={this.handleSubmit.bind(this)}  callback={this.handleChange.bind(this)} />
+                      <div id="loading-img" style={{textAlign:'center',paddingTop:"40px"}}> <img height="60px" width="100px" src="../../images/loading-2.gif" /></div>
                        <DisplayQuestions answers={this.state.totalAnswers} questions={LatestQuestion} sort={this.state.sort} />
                     </Col>
                     <Col s={0} m={4} m={4}>
