@@ -85,6 +85,7 @@ export default class Display extends React.Component{
                        StateObject.questions.unshift({ answers: [],user: this.state.user,question: {ques: this.state.currQuestion,  description: this.state.currDescription, askTime: new Date().toISOString()}});
                         StateObject.currDescription = "";
                         StateObject.currQuestion = "";
+                        StateObject.totalQuestions++;
                         this.setState(StateObject);
                         document.getElementById('currQuestion').value = ""
                         document.getElementById('currDescription').value = ""
@@ -99,7 +100,7 @@ export default class Display extends React.Component{
     }
     render(){
         var LatestQuestion = this.state.questions.sort((a,b)=>{
-                return b.question.askTime > a.question.askTime
+                return new Date(b.question.askTime) > new Date(a.question.askTime)  
         })
         console.log("LAtest questions are ", LatestQuestion);
         return (

@@ -34748,6 +34748,7 @@ var Display = function (_React$Component) {
                         StateObject.questions.unshift({ answers: [], user: _this3.state.user, question: { ques: _this3.state.currQuestion, description: _this3.state.currDescription, askTime: new Date().toISOString() } });
                         StateObject.currDescription = "";
                         StateObject.currQuestion = "";
+                        StateObject.totalQuestions++;
                         _this3.setState(StateObject);
                         document.getElementById('currQuestion').value = "";
                         document.getElementById('currDescription').value = "";
@@ -34766,7 +34767,7 @@ var Display = function (_React$Component) {
         key: 'render',
         value: function render() {
             var LatestQuestion = this.state.questions.sort(function (a, b) {
-                return b.question.askTime > a.question.askTime;
+                return new Date(b.question.askTime) > new Date(a.question.askTime);
             });
             console.log("LAtest questions are ", LatestQuestion);
             return _react2.default.createElement(
