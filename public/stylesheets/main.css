@@ -9,7 +9,7 @@
   z-index: 1000;
 }
 .gra-back{
-  background-color: #B9ADAD !important;
+  background-color: rgba(47,163,204,0.8) !important;
 }
 #logo{
   position: absolute;
@@ -119,10 +119,10 @@
   background-color: rgb(47, 180, 126) !important;
 }
 hr{
-  background-color: #79EF6B !important;
-  height: 2px !important;
+  background-color: #000000 !important;
+  height: 1px !important;
   margin-top: 4px !important;
-  color: #12FF12;
+  color: #000000;
   border: none;
 }
 #display-container{

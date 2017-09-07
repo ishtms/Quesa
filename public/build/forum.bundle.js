@@ -34425,7 +34425,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Full Stack Developement', actions: [_react2.default.createElement(
+                                        { key: 0, className: 'green-color darken-1', textClassName: 'white-text', title: 'Full Stack Developement', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '
@@ -34442,7 +34442,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Android Development', actions: [_react2.default.createElement(
+                                        { key: 1, className: 'green-color darken-1', textClassName: 'white-text', title: 'Android Development', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '
@@ -34459,7 +34459,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Web Design', actions: [_react2.default.createElement(
+                                        { key: 2, className: 'green-color darken-1', textClassName: 'white-text', title: 'Web Design', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '
@@ -34481,7 +34481,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Software Foundation', actions: [_react2.default.createElement(
+                                        { key: 4, className: 'green-color darken-1', textClassName: 'white-text', title: 'Software Foundation', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '
@@ -34498,7 +34498,7 @@ var ForumIndex = function (_React$Component) {
                                     { l: 4, m: 4, s: 4 },
                                     _react2.default.createElement(
                                         _reactMaterialize.Card,
-                                        { className: 'green-color darken-1', textClassName: 'white-text', title: 'Advance Java', actions: [_react2.default.createElement(
+                                        { key: 5, className: 'green-color darken-1', textClassName: 'white-text', title: 'Advance Java', actions: [_react2.default.createElement(
                                                 'span',
                                                 { style: { fontFamily: "Lato", color: 'white' } },
                                                 'Total Posts : '
@@ -34731,6 +34731,8 @@ var Display = function (_React$Component) {
                 createToast('Question should be atleast 20 characters long!');
             } else if (this.state.currDescription.length < 10) {
                 createToast('Please enter a descriptive description.');
+            } else if (this.state.currQuestion.length > 74) {
+                createToast("Question should be kept less than 75 characters. Enter excess in the description");
             } else {
                 _superagent2.default.post('questions/submitdata/question').send({
                     ques: this.state.currQuestion + "?",
@@ -34743,7 +34745,7 @@ var Display = function (_React$Component) {
                     } else {
                         createToast("Question Submitted");
                         var StateObject = Object.assign({}, _this3.state);
-                        StateObject.questions.unshift({ answers: [], user: _this3.state.user, question: { ques: _this3.state.currQuestion, description: _this3.state.currDescription, askTime: new Date() } });
+                        StateObject.questions.unshift({ answers: [], user: _this3.state.user, question: { ques: _this3.state.currQuestion, description: _this3.state.currDescription, askTime: new Date().toISOString() } });
                         StateObject.currDescription = "";
                         StateObject.currQuestion = "";
                         _this3.setState(StateObject);
@@ -34763,8 +34765,10 @@ var Display = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-
-            console.log('this state is', this.state);
+            var LatestQuestion = this.state.questions.sort(function (a, b) {
+                return b.question.askTime > a.question.askTime;
+            });
+            console.log("LAtest questions are ", LatestQuestion);
             return _react2.default.createElement(
                 'div',
                 { id: 'display-container' },
@@ -34780,8 +34784,7 @@ var Display = function (_React$Component) {
                         _reactMaterialize.Col,
                         { s: 12, m: 8, l: 8 },
                         _react2.default.createElement(_AskQuestion2.default, { handleSubmit: this.handleSubmit.bind(this), callback: this.handleChange.bind(this) }),
-                        console.log(this.state.questions),
-                        _react2.default.createElement(_DisplayQuestions2.default, { answers: this.state.totalAnswers, questions: this.state.questions, sort: this.state.sort })
+                        _react2.default.createElement(_DisplayQuestions2.default, { answers: this.state.totalAnswers, questions: LatestQuestion, sort: this.state.sort })
                     ),
                     _react2.default.createElement(
                         _reactMaterialize.Col,
@@ -34925,15 +34928,13 @@ var DisplayQuestions = function (_React$Component) {
     _createClass(DisplayQuestions, [{
         key: 'render',
         value: function render() {
-
             var latest = this.props.questions.map(function (curr, i) {
-                console.log(curr);
                 return _react2.default.createElement(
                     _reactMaterialize.Col,
-                    { m: 12, s: 12 },
+                    { key: i, m: 12, s: 12 },
                     _react2.default.createElement(
                         _reactMaterialize.Card,
-                        { key: i, className: 'gra-back darken-1', textClassName: 'black-text', title: curr.question.ques + "  asked by - " + curr.user, actions: [_react2.default.createElement(
+                        { className: 'gra-back darken-1', textClassName: 'black-text', title: curr.question.ques + "  asked by - " + curr.user, actions: [_react2.default.createElement(
                                 'a',
                                 { href: '#', style: { color: 'white' } },
                                 'Asked on -',

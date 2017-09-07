@@ -64,6 +64,8 @@ export default class Display extends React.Component{
             createToast('Question should be atleast 20 characters long!');
         }else if(this.state.currDescription.length < 10){
             createToast('Please enter a descriptive description.')
+        }else if(this.state.currQuestion.length > 74){
+            createToast("Question should be kept less than 75 characters. Enter excess in the description")
         }else{
             superagent
                 .post('questions/submitdata/question')
@@ -80,7 +82,7 @@ export default class Display extends React.Component{
                     }else{
                         createToast("Question Submitted");
                         var StateObject = Object.assign({},this.state);
-                       StateObject.questions.unshift({ answers: [],user: this.state.user,question: {ques: this.state.currQuestion,  description: this.state.currDescription, askTime: new Date()}});
+                       StateObject.questions.unshift({ answers: [],user: this.state.user,question: {ques: this.state.currQuestion,  description: this.state.currDescription, askTime: new Date().toISOString()}});
                         StateObject.currDescription = "";
                         StateObject.currQuestion = "";
                         this.setState(StateObject);
@@ -96,8 +98,10 @@ export default class Display extends React.Component{
         this.setState(StateObject)
     }
     render(){
-        
-        console.log('this state is', this.state)
+        var LatestQuestion = this.state.questions.sort((a,b)=>{
+                return b.question.askTime > a.question.askTime
+        })
+        console.log("LAtest questions are ", LatestQuestion);
         return (
             <div id="display-container">
                 <div id="display-heading">
@@ -106,8 +110,7 @@ export default class Display extends React.Component{
                 <Row> 
                     <Col s={12} m={8} l={8} >
                        <AskQuestion handleSubmit={this.handleSubmit.bind(this)}  callback={this.handleChange.bind(this)} />
-                       {console.log(this.state.questions)}
-                       <DisplayQuestions answers={this.state.totalAnswers} questions={this.state.questions} sort={this.state.sort} />
+                       <DisplayQuestions answers={this.state.totalAnswers} questions={LatestQuestion} sort={this.state.sort} />
                     </Col>
                     <Col s={0} m={4} m={4}>
                         <h5>Forum Statistics</h5>

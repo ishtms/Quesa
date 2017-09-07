@@ -46,30 +46,30 @@ export default class ForumIndex extends React.Component{
                 <div id="card-container">
                     <Row>
                         <Link to="/main/forum/fullstack"><Col l={4} m={4} s={4}>
-                            <Card className='green-color darken-1' textClassName='white-text' title='Full Stack Developement' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
+                            <Card key={0} className='green-color darken-1' textClassName='white-text' title='Full Stack Developement' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
                             Last Post By : on :
                             </Card>
                         </Col></Link>
                         <Link to="/main/forum/android"><Col l={4} m={4} s={4}>
-                            <Card className='green-color darken-1' textClassName='white-text' title='Android Development' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
+                            <Card key={1} className='green-color darken-1' textClassName='white-text' title='Android Development' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
                             Last Post By : on :
                             </Card>
                         </Col></Link>
                         <Link to="/main/forum/html"><Col l={4} m={4} s={4}>
-                            <Card className='green-color darken-1' textClassName='white-text' title='Web Design' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
+                            <Card key={2} className='green-color darken-1' textClassName='white-text' title='Web Design' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
                             Last Post By : on :
                             </Card>
                         </Col></Link>
                     </Row>
                     <Row id="second-index-row">
                         <Col l={2} m={2} s={2} />
-                        <Link to="/main/forum/foundation"><Col l={4} m={4} s={4}>
-                            <Card className='green-color darken-1' textClassName='white-text' title='Software Foundation' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
+                        <Link  to="/main/forum/foundation"><Col l={4} m={4} s={4}>
+                            <Card key={4} className='green-color darken-1' textClassName='white-text' title='Software Foundation' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
                             Last Post By : on :
                             </Card>
                         </Col></Link>
                         <Link to="/main/forum/javaadvance"><Col l={4} m={4} s={4}>
-                            <Card className='green-color darken-1' textClassName='white-text' title='Advance Java' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
+                            <Card key={5} className='green-color darken-1' textClassName='white-text' title='Advance Java' actions={[<span style={{fontFamily:"Lato", color: 'white'}}>Total Posts : </span>]}>
                             Last Post By : on :
                             </Card>
                         </Col>
