@@ -107,7 +107,7 @@ export default class Display extends React.Component{
         this.setState(StateObject)
     }
     render(){
-        this.checkAndHide()
+        this.checkAndHide();
         var LatestQuestion = this.state.questions.sort((a,b)=>{
                 return new Date(b.question.askTime) > new Date(a.question.askTime)  
         })
