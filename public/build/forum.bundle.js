@@ -53181,13 +53181,6 @@ var Display = function (_React$Component) {
             }
         }
     }, {
-        key: 'checkAndHide',
-        value: function checkAndHide() {
-            if (this.state.loading == false) {
-                document.getElementById('loading-img').innerHTML = '';
-            }
-        }
-    }, {
         key: 'handleChange',
         value: function handleChange(event) {
             var StateObject = Object.assign({}, this.state);
@@ -53197,7 +53190,8 @@ var Display = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            this.checkAndHide();
+            var _React$createElement;
+
             var LatestQuestion = this.state.questions.sort(function (a, b) {
                 return new Date(b.question.askTime) > new Date(a.question.askTime);
             });
@@ -53210,34 +53204,60 @@ var Display = function (_React$Component) {
                     header: 'Welcome back, ' + this.state.user + '!',
                     content: 'Post an entirely new question, or browse through the list of other questions to find one that answers a similar question like you have.'
                 }),
-                _react2.default.createElement(
+                _react2.default.createElement(_AskQuestion2.default, { handleSubmit: this.handleSubmit.bind(this), callback: this.handleChange.bind(this) }),
+                this.state.loading ? _react2.default.createElement(
+                    _semanticUiReact.Segment,
+                    null,
+                    _react2.default.createElement(
+                        _semanticUiReact.Dimmer,
+                        { active: true, inverted: true },
+                        _react2.default.createElement(
+                            _semanticUiReact.Loader,
+                            { size: 'large' },
+                            'Loading Questions'
+                        )
+                    ),
+                    _react2.default.createElement(_semanticUiReact.Image, { src: '../images/paragraph.png' })
+                ) : _react2.default.createElement(
                     _reactMaterialize.Row,
                     null,
                     _react2.default.createElement(
                         _reactMaterialize.Col,
                         { s: 12, m: 8, l: 8 },
-                        _react2.default.createElement(_AskQuestion2.default, { handleSubmit: this.handleSubmit.bind(this), callback: this.handleChange.bind(this) }),
-                        _react2.default.createElement(
-                            'div',
-                            { id: 'loading-img', style: { textAlign: 'center', paddingTop: "40px" } },
-                            ' ',
-                            _react2.default.createElement('img', { height: '60px', width: '100px', src: '../../images/loading-2.gif' })
-                        ),
                         _react2.default.createElement(_DisplayQuestions2.default, { answers: this.state.totalAnswers, questions: LatestQuestion, sort: this.state.sort })
                     ),
                     _react2.default.createElement(
                         _reactMaterialize.Col,
-                        _defineProperty({ s: 0, m: 4 }, 'm', 4),
+                        (_React$createElement = { s: 0, m: 4 }, _defineProperty(_React$createElement, 'm', 4), _defineProperty(_React$createElement, 'style', { textAlign: 'center' }), _React$createElement),
                         _react2.default.createElement(
-                            'h5',
-                            null,
-                            'Forum Statistics'
+                            _semanticUiReact.Header,
+                            { as: 'h2', icon: true, textAlign: 'center' },
+                            _react2.default.createElement(_semanticUiReact.Icon, { name: 'users', circular: true }),
+                            _react2.default.createElement(
+                                _semanticUiReact.Header.Content,
+                                null,
+                                'Forum Statistics',
+                                _react2.default.createElement('br', null)
+                            )
                         ),
-                        'Total questions in Android : ',
-                        this.state.totalQuestions,
-                        _react2.default.createElement('br', null),
-                        'Total answers in Android : ',
-                        this.state.totalAnswers
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            _react2.default.createElement(
+                                _semanticUiReact.Statistic.Group,
+                                null,
+                                _react2.default.createElement(
+                                    'div',
+                                    { style: { position: 'relative', left: '50%', transform: 'translateX(-50%)' } },
+                                    _react2.default.createElement(_semanticUiReact.Statistic, { color: 'red', value: this.state.totalAnswers, label: 'Answers' })
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { style: { marginLeft: '10%' } },
+                                    _react2.default.createElement(_semanticUiReact.Statistic, { color: 'orange', value: this.state.totalQuestions, label: 'Questions' })
+                                )
+                            )
+                        )
                     )
                 )
             );

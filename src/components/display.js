@@ -5,6 +5,8 @@ import DisplayQuestions from './baby-containers/DisplayQuestions';
 import Statistics from './baby-containers/Statistics';
 import superagent from 'superagent';
 import { Message } from 'semantic-ui-react'
+import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
+import { Statistic, Header, Icon } from 'semantic-ui-react'
 
 export default class Display extends React.Component{
     constructor(props){
@@ -97,18 +99,13 @@ export default class Display extends React.Component{
                 })
         }
     }
-    checkAndHide(){
-        if(this.state.loading == false){
-            document.getElementById('loading-img').innerHTML = ''
-        }
-    }
+    
     handleChange(event){
         let StateObject = Object.assign({}, this.state);
         StateObject[event.target.id] = event.target.value;
         this.setState(StateObject)
     }
     render(){
-        this.checkAndHide();
         var LatestQuestion = this.state.questions.sort((a,b)=>{
                 return new Date(b.question.askTime) > new Date(a.question.askTime)  
         })
@@ -120,18 +117,42 @@ export default class Display extends React.Component{
                 header={'Welcome back, '+this.state.user+'!'}
                 content='Post an entirely new question, or browse through the list of other questions to find one that answers a similar question like you have.'
             />
+            <AskQuestion handleSubmit={this.handleSubmit.bind(this)}  callback={this.handleChange.bind(this)} />
+            
+            {this.state.loading?
+                <Segment>
+                <Dimmer active inverted>
+                  <Loader size='large'>Loading Questions</Loader>
+                </Dimmer>
+          
+                <Image src='../images/paragraph.png' />
+              </Segment>:
                 <Row> 
                     <Col s={12} m={8} l={8} >
-                       <AskQuestion handleSubmit={this.handleSubmit.bind(this)}  callback={this.handleChange.bind(this)} />
-                      <div id="loading-img" style={{textAlign:'center',paddingTop:"40px"}}> <img height="60px" width="100px" src="../../images/loading-2.gif" /></div>
-                       <DisplayQuestions answers={this.state.totalAnswers} questions={LatestQuestion} sort={this.state.sort} />
+                    <DisplayQuestions answers={this.state.totalAnswers} questions={LatestQuestion} sort={this.state.sort} />
+                        
+                       
                     </Col>
-                    <Col s={0} m={4} m={4}>
-                        <h5>Forum Statistics</h5>
-                        Total questions in Android : {this.state.totalQuestions}<br />
-                        Total answers in Android : {this.state.totalAnswers}
+                    <Col s={0} m={4} m={4} style={{textAlign: 'center'}}>
+                    <Header as='h2' icon textAlign='center'>
+                        <Icon name='users' circular />
+                        <Header.Content>
+                        Forum Statistics
+                        <br/>
+                        </Header.Content>
+                    </Header>
+                    <div>
+                        <Statistic.Group>
+                        <div style={{position: 'relative', left: '50%', transform: 'translateX(-50%)'}}>
+                         <Statistic color='red' value={this.state.totalAnswers} label='Answers' />
+                        </div>
+                        <div style={{marginLeft: '10%'}}>
+                        <Statistic color='orange' value={this.state.totalQuestions} label='Questions' />
+                        </div>
+                      </Statistic.Group>
+                      </div>
                     </Col>
-                </Row>
+                </Row>}
             </div>
                     );
     }
