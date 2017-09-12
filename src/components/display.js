@@ -4,6 +4,7 @@ import AskQuestion from './baby-containers/AskQuestion';
 import DisplayQuestions from './baby-containers/DisplayQuestions';
 import Statistics from './baby-containers/Statistics';
 import superagent from 'superagent';
+import { Message } from 'semantic-ui-react'
 
 export default class Display extends React.Component{
     constructor(props){
@@ -114,9 +115,11 @@ export default class Display extends React.Component{
         console.log("LAtest questions are ", LatestQuestion);
         return (
             <div id="display-container">
-                <div id="display-heading">
-                    Post an entirely new question, or browse through the list of other questions to find one that answers a similar question like you have.
-                </div>
+            <Message
+                onDismiss={this.handleDismiss}
+                header={'Welcome back, '+this.state.user+'!'}
+                content='Post an entirely new question, or browse through the list of other questions to find one that answers a similar question like you have.'
+            />
                 <Row> 
                     <Col s={12} m={8} l={8} >
                        <AskQuestion handleSubmit={this.handleSubmit.bind(this)}  callback={this.handleChange.bind(this)} />

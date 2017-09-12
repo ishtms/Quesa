@@ -9,9 +9,10 @@ class Forum extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            
+          
         }
     }
+    
     componentWillMount(){
         superagent
         .get('/confirm_login/quesa/data')
@@ -30,6 +31,7 @@ class Forum extends React.Component{
         })
     }
     render(){
+        console.log('THe state is ', this.state)
         return (this.state.confirmed===true)?(
             <BrowserRouter>
                 <div>

@@ -19,7 +19,6 @@ export default class AskQuestion extends Component{
                         <Button  large className='red' waves='light' icon='check_circle' id="s_submit" onClick={this.props.handleSubmit.bind(this)}>Ask</Button>
                     </Col>
                 </Row>
-                <hr />
             </div>
         )
     }
