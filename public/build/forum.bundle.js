@@ -53190,8 +53190,6 @@ var Display = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _React$createElement;
-
             var LatestQuestion = this.state.questions.sort(function (a, b) {
                 return new Date(b.question.askTime) > new Date(a.question.askTime);
             });
@@ -53228,7 +53226,7 @@ var Display = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         _reactMaterialize.Col,
-                        (_React$createElement = { s: 0, m: 4 }, _defineProperty(_React$createElement, 'm', 4), _defineProperty(_React$createElement, 'style', { textAlign: 'center' }), _React$createElement),
+                        _defineProperty({ s: 0, m: 4 }, 'm', 4),
                         _react2.default.createElement(
                             _semanticUiReact.Header,
                             { as: 'h2', icon: true, textAlign: 'center' },
@@ -53246,16 +53244,8 @@ var Display = function (_React$Component) {
                             _react2.default.createElement(
                                 _semanticUiReact.Statistic.Group,
                                 null,
-                                _react2.default.createElement(
-                                    'div',
-                                    { style: { position: 'relative', left: '50%', transform: 'translateX(-50%)' } },
-                                    _react2.default.createElement(_semanticUiReact.Statistic, { color: 'red', value: this.state.totalAnswers, label: 'Answers' })
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { style: { marginLeft: '10%' } },
-                                    _react2.default.createElement(_semanticUiReact.Statistic, { color: 'orange', value: this.state.totalQuestions, label: 'Questions' })
-                                )
+                                _react2.default.createElement(_semanticUiReact.Statistic, { color: 'green', value: this.state.totalQuestions, label: 'Total Questions' }),
+                                _react2.default.createElement(_semanticUiReact.Statistic, { color: 'orange', value: this.state.totalAnswers, label: 'Total Answers' })
                             )
                         )
                     )

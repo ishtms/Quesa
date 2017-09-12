@@ -133,7 +133,7 @@ export default class Display extends React.Component{
                         
                        
                     </Col>
-                    <Col s={0} m={4} m={4} style={{textAlign: 'center'}}>
+                    <Col s={0} m={4} m={4}>
                     <Header as='h2' icon textAlign='center'>
                         <Icon name='users' circular />
                         <Header.Content>
@@ -143,12 +143,8 @@ export default class Display extends React.Component{
                     </Header>
                     <div>
                         <Statistic.Group>
-                        <div style={{position: 'relative', left: '50%', transform: 'translateX(-50%)'}}>
-                         <Statistic color='red' value={this.state.totalAnswers} label='Answers' />
-                        </div>
-                        <div style={{marginLeft: '10%'}}>
-                        <Statistic color='orange' value={this.state.totalQuestions} label='Questions' />
-                        </div>
+                        <Statistic color='green' value={this.state.totalQuestions} label='Total Questions' />
+                        <Statistic color='orange' value={this.state.totalAnswers} label='Total Answers' />
                       </Statistic.Group>
                       </div>
                     </Col>
