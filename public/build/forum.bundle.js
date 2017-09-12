@@ -52936,11 +52936,9 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(72);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _reactMaterialize = __webpack_require__(119);
+
+var _reactRouterDom = __webpack_require__(308);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52983,33 +52981,56 @@ var SideNavigation = function (_React$Component) {
                     }
                 }),
                 _react2.default.createElement(
-                    _reactMaterialize.SideNavItem,
-                    { href: '#!icon', icon: 'airplay' },
-                    'FullStack Development'
+                    _reactRouterDom.Link,
+                    { to: '/main/forum/fullstack' },
+                    ' ',
+                    _react2.default.createElement(
+                        _reactMaterialize.SideNavItem,
+                        { href: '#!icon', icon: 'airplay' },
+                        'FullStack Development'
+                    )
                 ),
                 _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
                 _react2.default.createElement(
-                    _reactMaterialize.SideNavItem,
-                    { href: '#!icon', icon: 'android' },
-                    'Android Development'
+                    _reactRouterDom.Link,
+                    { to: '/main/forum/android' },
+                    _react2.default.createElement(
+                        _reactMaterialize.SideNavItem,
+                        { href: '#!icon', icon: 'android' },
+                        'Android Development'
+                    )
                 ),
                 _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
                 _react2.default.createElement(
-                    _reactMaterialize.SideNavItem,
-                    { href: '#!icon', icon: 'code' },
-                    'Software Foundation'
+                    _reactRouterDom.Link,
+                    { to: '/main/forum/foundaiton' },
+                    ' ',
+                    _react2.default.createElement(
+                        _reactMaterialize.SideNavItem,
+                        { href: '#!icon', icon: 'code' },
+                        'Software Foundation'
+                    )
                 ),
                 _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
                 _react2.default.createElement(
-                    _reactMaterialize.SideNavItem,
-                    { href: '#!icon', icon: 'face' },
-                    'Web-Design'
+                    _reactRouterDom.Link,
+                    { to: '/main/forum/html' },
+                    ' ',
+                    _react2.default.createElement(
+                        _reactMaterialize.SideNavItem,
+                        { href: '#!icon', icon: 'face' },
+                        'Web-Design'
+                    )
                 ),
                 _react2.default.createElement(_reactMaterialize.SideNavItem, { divider: true }),
                 _react2.default.createElement(
-                    _reactMaterialize.SideNavItem,
-                    { href: '#!icon', icon: 'shopping_cart' },
-                    'Advance Java'
+                    _reactRouterDom.Link,
+                    { to: '/main/forum/javaadvance' },
+                    _react2.default.createElement(
+                        _reactMaterialize.SideNavItem,
+                        { href: '#!icon', icon: 'shopping_cart' },
+                        'Advance Java'
+                    )
                 )
             );
         }
